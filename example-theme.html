@@ -15,8 +15,8 @@
    \ \_\  \ \_\\_/\_\ \____\/\____\   \ \_____\ \_\ \_\ \_\ \____/ \_\ \_\
     \/_/   \/_///\/_/\/____/\/____/    \/_____/\/_/\/_/\/_/\/___/ \/_/\/_/
 ==========================================================================
-   PXU Extended Photoset Example
-   Updated: May 17, 2012
+   Juneau v0.0.1
+   Updated: April 27, 2012
    Website: http://pixelunion.net
    Themes: http:tumblr.com/themes/by/pixelunion
 ========================================================================== 
@@ -60,27 +60,6 @@
 
 	<meta name="text:Number of Twitter Posts" content="5" />
 	<meta name="text:Twitter Username" content="" />
-
-	<meta name="text:Facebook Username" content="" />
-	<meta name="text:Facebook API ID" content="" />
-	<meta name="text:Vimeo Username" content="" />
-	<meta name="text:Flickr Username" content="" />
-	<meta name="text:Lastfm Username" content="" />
-	<meta name="text:Dribbble Username" content="" />
-	<meta name="text:Skype Username" content="" />
-	<meta name="text:Facebook Username" content="" />
-	<meta name="text:Google Plus URL" content="" />
-	<meta name="text:Github Username" content="" />
-	<meta name="text:Youtube Username" content="" />
-	<meta name="text:Linkedin Profile URL" content="" />
-	<meta name="text:Svpply Username" content="" />
-	<meta name="text:Rdio Username" content="" />
-	<meta name="text:Gowalla Username" content="" />
-	<meta name="text:Foursquare Username" content="" />
-	<meta name="text:Instagram URL" content="" />
-	<meta name="text:Pinterest Username" content="" />
-	<meta name="text:Disqus Shortname" content="" />
-	<meta name="text:Google Analytics Shortcode" content="" />
 
 	{block:IfFacebookUsername}<meta property="fb:admins" content="{text:Facebook Username}"/>{/block:IfFacebookUsername}
 	{block:IfFacebookAPIID}<meta property="fb:app_id" content="{text:Facebook API ID}"/>{/block:IfFacebookAPIID}
@@ -599,40 +578,20 @@
 <script src="http://static.tumblr.com/hugxd2w/JpHm3cwl4/plugins.js"></script>
 <script src="http://static.tumblr.com/gmeghwp/zvjlvwfbn/view.js?auto"></script>
 <script src="http://dl.dropbox.com/u/8328696/Juneau/script.js"></script>
-<script src="http://dl.dropbox.com/u/8328696/Juneau/pxuPhotoset.js"></script>
+<script src="http://static.tumblr.com/08jkzbs/8Ppm46sv6/pxuphotoset.min.js"></script>
 <script>
 $(document).ready(function() {
-	$('.photo-slideshow').pxuPhotoset({
-		'gutter'  : '5px',
-		'highRes' : false,
-		'rounded' : 'corners'
-	});
-});	
+    $('.photo-slideshow').pxuPhotoset({
+        // options go here
+    });
+});
 </script>
 <script>
-	{block:IfGoogleAnalyticsShortcode}
-		var _gaq=[['_setAccount','{text:Google Analytics Shortcode}'],['_trackPageview']];
-		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-		s.parentNode.insertBefore(g,s)}(document,'script'));
-	{/block:IfGoogleAnalyticsShortcode}
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
+	var _gaq=[['_setAccount','XXX'],['_trackPageview']];
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
-
-{block:IfFacebookComments}
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-{/block:IfFacebookComments}
 
 {block:IfNotSingleColumnLayout}{block:IndexPage} <script>
 $(document).ready(function() {
