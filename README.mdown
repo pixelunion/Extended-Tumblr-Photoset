@@ -14,7 +14,7 @@ Licensed under the MIT license
 Locate your current Tumblr Photoset code and replace it with the following:
 
 	{block:Photoset}
-	<div class="photo-slideshow" id="{PostID}" data-layout="{PhotosetLayout}">
+	<div class="photo-slideshow" data-layout="{PhotosetLayout}">
 		
 		{block:Photos}
 			<div class="photo-data">

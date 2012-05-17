@@ -2,6 +2,10 @@
    PXU Photoset Extended Styles
    ========================================================================== */
 
+.clearit:before, .clearit:after { content: ""; display: table; }
+.clearit:after { clear: both; }
+.clearit { *zoom: 1; }
+
 /* Photoset */
 
 .photo-slideshow .row {
@@ -13,10 +17,12 @@
   display: block;
   float: left;
   margin-bottom: 0;
+  width: 100%;
 }
 
 .photo-slideshow .photo img {
   width: 100%;
+  height: auto;
 }
 
 .photo-slideshow .photo:first-child img {
@@ -115,7 +121,12 @@
 
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
-      border-radius: 5px;
+          border-radius: 5px;
+
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+
 }
 
 .exif table {

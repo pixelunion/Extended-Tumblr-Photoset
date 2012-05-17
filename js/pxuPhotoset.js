@@ -65,18 +65,23 @@
           }
 
           $this.find(options.photoWrap)
-            .slice(pC,result[i][2]).addClass('count-' + result[i][1]).wrapAll('<div class="row clearfix" />');
+            .slice(pC,result[i][2]).addClass('count-' + result[i][1]).wrapAll('<div class="row clearit" />');
 
         } // end create rows
 
         // apply gutter
         $(this).find('.row').css('margin-bottom',options.gutter);
-        $(this).find(options.photoWrap+':not(:first-child) ' + options.photo).css('margin-left', options.gutter);
+        $(this).find(options.photoWrap+':not(:first-child) ' + options.photo + ' img').css('margin-left', options.gutter);
 
         // our function to find the minimum value
         Array.min = function( array ){
            return Math.min.apply( Math, array );
         };
+
+        $this.find('.count-1 img').each(function() {
+          var c1height = $(this).height();
+          $(this).parents('.row').height(c1height);
+        });
 
         // find the shortest image in rows that have two images
         var c2heights = $(this).find('.count-2 img').map(function() {
