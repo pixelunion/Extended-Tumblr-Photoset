@@ -13,7 +13,8 @@ Licensed under the MIT license
 
 Locate your current Tumblr Photoset code and replace it with the following:
 
-`{block:Photoset}
+`
+{block:Photoset}
 <div class="photo-slideshow" id="{PostID}" data-layout="{PhotosetLayout}">
 	
 	{block:Photos}
@@ -31,22 +32,26 @@ Locate your current Tumblr Photoset code and replace it with the following:
 
 {block:Caption}{Caption}{/block:Caption}
 
-{/block:Photoset}`
+{/block:Photoset}
+`
 
 At the bottom of your theme, before the closing `</body>` tag, insert the following:
 
-`<script type="text/javascript" src="/path/to/js/pxuPhotoset.min.js"></script>
+`
+<script type="text/javascript" src="/path/to/js/pxuPhotoset.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.photo-slideshow').pxuPhotoset({
 		// options go here
 	});
 });
-</script>`
+</script>
+`
 
 In the Custom CSS box, you'll want to include the following styles:
 
-`/* Photoset */
+`
+/* Photoset */
 
 .photo-slideshow .row {
   clear: both;
@@ -202,11 +207,13 @@ In the Custom CSS box, you'll want to include the following styles:
   position: absolute;
   bottom: -10px;
   left: 110px;
-}`
+}
+`
 
 ## Options
 
-`$('.selector').pxuPhotoset({
+`
+$('.selector').pxuPhotoset({
 	'highRes'   : true, // will use high res images
 	'rounded'   : 'corners', // corners, all or false
 	'exif'      : true, // display EXIF data if available
@@ -214,6 +221,7 @@ In the Custom CSS box, you'll want to include the following styles:
 	'photoset'  : '.photo-slideshow', // photoset wrapper
 	'photoWrap' : '.photo-data', // photo data wrapper (includes photo, icons + exif)
 	'photo'     : '.photo' // photo wrap (includes photo only)
-});`
+});
+`
 
 For the differences between 'photoset', 'photoWrap' and 'photo', see the tumblr-code.html file.
