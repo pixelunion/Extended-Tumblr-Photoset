@@ -1,0 +1,35 @@
+<!--
+	Replace your Photoset code with the code below
+-->
+
+{block:Photoset}
+<div class="photo-slideshow" id="{PostID}" data-layout="{PhotosetLayout}">
+	
+	{block:Photos}
+		<div class="photo-data">
+			<div class="photo">
+				<img alt="{PhotoAlt}" src="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" {block:Exif}data-camera="{block:Camera}{Camera}{/block:Camera}" data-iso="{block:ISO}{ISO}{/block:ISO}" data-aperture="{block:Aperture}{Aperture}{/block:Aperture}" data-exposure="{block:Exposure}{Exposure}{/block:Exposure}" data-focal="{block:FocalLength}{FocalLength}{/block:FocalLength}"{/block:Exif}>
+			</div>
+			<div class="icons">
+				<a class="view" rel="post-{PostID}" href="{PhotoURL-HighRes}"><span class="zoom">Zoom</span></a>
+				{block:Exif}<span class="info">Info</span>{/block:Exif}
+			</div>
+		</div>
+	{/block:Photos}
+</div><!-- close SLIDESHOW -->
+
+{block:Caption}{Caption}{/block:Caption}
+
+{/block:Photoset}
+
+
+
+<!--
+	Somewhere near the bottom of the page, before the closing </body> tag, place the following code:
+-->
+
+<script>
+$(document).ready(function() {
+	$('.photo-slideshow').pxuPhotoset();
+});
+</script>

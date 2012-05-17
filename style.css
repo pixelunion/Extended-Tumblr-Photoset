@@ -1,52 +1,8 @@
-# PXU Photoset Extended
+/* =============================================================================
+   PXU Photoset Extended Styles
+   ========================================================================== */
 
-Version. 1.0.0
-Copyright 2012 Pixel Union
-Licensed under the MIT license
-
-## Requirements
-
-* jQuery v1.7.0 http://jquery.com/
-* imagesLoaded jQuery Plugin https://github.com/desandro/imagesloaded
-
-## Installation
-
-Locate your current Tumblr Photoset code and replace it with the following:
-
-`{block:Photoset}
-<div class="photo-slideshow" id="{PostID}" data-layout="{PhotosetLayout}">
-	
-	{block:Photos}
-		<div class="photo-data">
-			<div class="photo">
-				<img alt="{PhotoAlt}" src="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" {block:Exif}data-camera="{block:Camera}{Camera}{/block:Camera}" data-iso="{block:ISO}{ISO}{/block:ISO}" data-aperture="{block:Aperture}{Aperture}{/block:Aperture}" data-exposure="{block:Exposure}{Exposure}{/block:Exposure}" data-focal="{block:FocalLength}{FocalLength}{/block:FocalLength}"{/block:Exif}>
-			</div>
-			<div class="icons">
-				<a class="view" rel="post-{PostID}" href="{PhotoURL-HighRes}"><span class="zoom">Zoom</span></a>
-				{block:Exif}<span class="info">Info</span>{/block:Exif}
-			</div>
-		</div>
-	{/block:Photos}
-</div><!-- close SLIDESHOW -->
-
-{block:Caption}{Caption}{/block:Caption}
-
-{/block:Photoset}`
-
-At the bottom of your theme, before the closing `</body>` tag, insert the following:
-
-`<script type="text/javascript" src="/path/to/js/pxuPhotoset.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-	$('.photo-slideshow').pxuPhotoset({
-		// options go here
-	});
-});
-</script>`
-
-In the Custom CSS box, you'll want to include the following styles:
-
-`/* Photoset */
+/* Photoset */
 
 .photo-slideshow .row {
   clear: both;
@@ -202,18 +158,4 @@ In the Custom CSS box, you'll want to include the following styles:
   position: absolute;
   bottom: -10px;
   left: 110px;
-}`
-
-## Options
-
-`$('.selector').pxuPhotoset({
-	'highRes'   : true, // will use high res images
-	'rounded'   : 'corners', // corners, all or false
-	'exif'      : true, // display EXIF data if available
-	'gutter'    : '10px', // spacing between the images
-	'photoset'  : '.photo-slideshow', // photoset wrapper
-	'photoWrap' : '.photo-data', // photo data wrapper (includes photo, icons + exif)
-	'photo'     : '.photo' // photo wrap (includes photo only)
-});`
-
-For the differences between 'photoset', 'photoWrap' and 'photo', see the tumblr-code.html file.
+}
