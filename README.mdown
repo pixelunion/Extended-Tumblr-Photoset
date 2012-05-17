@@ -13,215 +13,207 @@ Licensed under the MIT license
 
 Locate your current Tumblr Photoset code and replace it with the following:
 
-`
-{block:Photoset}
-<div class="photo-slideshow" id="{PostID}" data-layout="{PhotosetLayout}">
-	
-	{block:Photos}
-		<div class="photo-data">
-			<div class="photo">
-				<img alt="{PhotoAlt}" src="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" {block:Exif}data-camera="{block:Camera}{Camera}{/block:Camera}" data-iso="{block:ISO}{ISO}{/block:ISO}" data-aperture="{block:Aperture}{Aperture}{/block:Aperture}" data-exposure="{block:Exposure}{Exposure}{/block:Exposure}" data-focal="{block:FocalLength}{FocalLength}{/block:FocalLength}"{/block:Exif}>
+	{block:Photoset}
+	<div class="photo-slideshow" id="{PostID}" data-layout="{PhotosetLayout}">
+		
+		{block:Photos}
+			<div class="photo-data">
+				<div class="photo">
+					<img alt="{PhotoAlt}" src="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" {block:Exif}data-camera="{block:Camera}{Camera}{/block:Camera}" data-iso="{block:ISO}{ISO}{/block:ISO}" data-aperture="{block:Aperture}{Aperture}{/block:Aperture}" data-exposure="{block:Exposure}{Exposure}{/block:Exposure}" data-focal="{block:FocalLength}{FocalLength}{/block:FocalLength}"{/block:Exif}>
+				</div>
+				<div class="icons">
+					<a class="view" rel="post-{PostID}" href="{PhotoURL-HighRes}"><span class="zoom">Zoom</span></a>
+					{block:Exif}<span class="info">Info</span>{/block:Exif}
+				</div>
 			</div>
-			<div class="icons">
-				<a class="view" rel="post-{PostID}" href="{PhotoURL-HighRes}"><span class="zoom">Zoom</span></a>
-				{block:Exif}<span class="info">Info</span>{/block:Exif}
-			</div>
-		</div>
-	{/block:Photos}
-</div><!-- close SLIDESHOW -->
+		{/block:Photos}
+	</div><!-- close SLIDESHOW -->
 
-{block:Caption}{Caption}{/block:Caption}
+	{block:Caption}{Caption}{/block:Caption}
 
-{/block:Photoset}
-`
+	{/block:Photoset}
 
 At the bottom of your theme, before the closing `</body>` tag, insert the following:
 
-`
-<script type="text/javascript" src="/path/to/js/pxuPhotoset.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-	$('.photo-slideshow').pxuPhotoset({
-		// options go here
+	<script type="text/javascript" src="/path/to/js/pxuPhotoset.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('.photo-slideshow').pxuPhotoset({
+			// options go here
+		});
 	});
-});
-</script>
-`
+	</script>
 
 In the Custom CSS box, you'll want to include the following styles:
 
-`
-/* Photoset */
+	/* Photoset */
 
-.photo-slideshow .row {
-  clear: both;
-  width: 100%;
-}
+	.photo-slideshow .row {
+	  clear: both;
+	  width: 100%;
+	}
 
-.photo-slideshow .photo {
-  display: block;
-  float: left;
-  margin-bottom: 0;
-}
+	.photo-slideshow .photo {
+	  display: block;
+	  float: left;
+	  margin-bottom: 0;
+	}
 
-.photo-slideshow .photo img {
-  width: 100%;
-}
+	.photo-slideshow .photo img {
+	  width: 100%;
+	}
 
-.photo-slideshow .photo:first-child img {
-  margin-left: 0;
-}
+	.photo-slideshow .photo:first-child img {
+	  margin-left: 0;
+	}
 
-.photo-slideshow .count-1 {
-  width: 100%;
-}
+	.photo-slideshow .count-1 {
+	  width: 100%;
+	}
 
-.photo-slideshow .count-2 {
-  width: 50%;
-}
+	.photo-slideshow .count-2 {
+	  width: 50%;
+	}
 
-.photo-slideshow .count-3 {
-  width: 33.3%;
-}
+	.photo-slideshow .count-3 {
+	  width: 33.3%;
+	}
 
-.photo-slideshow .count-3:first-child {
-  width: 33.4%;
-}
+	.photo-slideshow .count-3:first-child {
+	  width: 33.4%;
+	}
 
-.photo-slideshow .count-4 {
-  width: 25%;
-}
+	.photo-slideshow .count-4 {
+	  width: 25%;
+	}
 
-.photo-slideshow .count-5 {
-  width: 20%;
-}
+	.photo-slideshow .count-5 {
+	  width: 20%;
+	}
 
-.photo-slideshow .info {
-  display: none;
-}
+	.photo-slideshow .info {
+	  display: none;
+	}
 
-/* Icons for EXIF Data and Zoom */
+	/* Icons for EXIF Data and Zoom */
 
-.photo-data {
-  position: relative;
-  float: left;
-}
+	.photo-data {
+	  position: relative;
+	  float: left;
+	}
 
-.photo {
-  overflow: hidden;
-}
+	.photo {
+	  overflow: hidden;
+	}
 
-.icons {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 20px;
-  height: 60px;
-  text-indent: -9999px;
-  z-index: 999;
-  opacity: 0;
-  filter: alpha(opacity = 0);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-}
+	.icons {
+	  position: absolute;
+	  top: 5px;
+	  right: 5px;
+	  width: 20px;
+	  height: 60px;
+	  text-indent: -9999px;
+	  z-index: 999;
+	  opacity: 0;
+	  filter: alpha(opacity = 0);
+	  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	}
 
-.icons > span, .icons .view span {
-  width: 20px;
-  height: 20px;
-  display: block;
-  margin-bottom: 2px;
-  cursor: pointer;
-}
+	.icons > span, .icons .view span {
+	  width: 20px;
+	  height: 20px;
+	  display: block;
+	  margin-bottom: 2px;
+	  cursor: pointer;
+	}
 
-.zoom {
-  background: url('http://static.tumblr.com/hugxd2w/kgem0so9j/zoom-icon.png');
-}
+	.zoom {
+	  background: url('http://static.tumblr.com/hugxd2w/kgem0so9j/zoom-icon.png');
+	}
 
-.info {
-  background: url('http://static.tumblr.com/hugxd2w/ffwm0so9t/info-icon.png');
-  position: relative;
-}
+	.info {
+	  background: url('http://static.tumblr.com/hugxd2w/ffwm0so9t/info-icon.png');
+	  position: relative;
+	}
 
-/* EXIF Data Tooltip */
+	/* EXIF Data Tooltip */
 
-.exif {
-  position: absolute;
-  top: -175px;
-  left: -110px;
-  width: 240px;
-  background: #000;
-  background: rgba(0,0,0,.85);
-  color: #fff;
-  font-size: 12px;
-  line-height: 1.4;
-  text-indent: 0;
-  padding: 20px;
-  display: none;
-  opacity: 0;
-  filter: alpha(opacity = 0);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	.exif {
+	  position: absolute;
+	  top: -175px;
+	  left: -110px;
+	  width: 240px;
+	  background: #000;
+	  background: rgba(0,0,0,.85);
+	  color: #fff;
+	  font-size: 12px;
+	  line-height: 1.4;
+	  text-indent: 0;
+	  padding: 20px;
+	  display: none;
+	  opacity: 0;
+	  filter: alpha(opacity = 0);
+	  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 
-  box-shadow: 2px 2px 7px rgba(0,0,0,0.55);
+	  box-shadow: 2px 2px 7px rgba(0,0,0,0.55);
 
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-      border-radius: 5px;
-}
+	  -webkit-border-radius: 5px;
+	     -moz-border-radius: 5px;
+	      border-radius: 5px;
+	}
 
-.exif table {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: bold;
-  width: 100%;
-}
+	.exif table {
+	  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	  font-weight: bold;
+	  width: 100%;
+	}
 
-.exif table tr {
-  width: 100%;
-}
+	.exif table tr {
+	  width: 100%;
+	}
 
-.exif table tr td {
-  width: 50%;
-  font-weight: bold;
-  padding-bottom: 15px;
-}
+	.exif table tr td {
+	  width: 50%;
+	  font-weight: bold;
+	  padding-bottom: 15px;
+	}
 
-.exif table tr:last-child td {
-  padding-bottom: 0;
-}
+	.exif table tr:last-child td {
+	  padding-bottom: 0;
+	}
 
-.exif .label {
-  color: #cccccc;
-  text-transform: uppercase;
-  font-size: 10px;
-  text-align: right;
-  padding-right: 12px;
-  font-weight: normal;
-}
+	.exif .label {
+	  color: #cccccc;
+	  text-transform: uppercase;
+	  font-size: 10px;
+	  text-align: right;
+	  padding-right: 12px;
+	  font-weight: normal;
+	}
 
-.arrow-down {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
+	.arrow-down {
+	  width: 0;
+	  height: 0;
+	  border-left: 10px solid transparent;
+	  border-right: 10px solid transparent;
 
-  border-top: 10px solid rgba(0,0,0,0.85);
+	  border-top: 10px solid rgba(0,0,0,0.85);
 
-  position: absolute;
-  bottom: -10px;
-  left: 110px;
-}
-`
+	  position: absolute;
+	  bottom: -10px;
+	  left: 110px;
+	}
 
 ## Options
 
-`
-$('.selector').pxuPhotoset({
-	'highRes'   : true, // will use high res images
-	'rounded'   : 'corners', // corners, all or false
-	'exif'      : true, // display EXIF data if available
-	'gutter'    : '10px', // spacing between the images
-	'photoset'  : '.photo-slideshow', // photoset wrapper
-	'photoWrap' : '.photo-data', // photo data wrapper (includes photo, icons + exif)
-	'photo'     : '.photo' // photo wrap (includes photo only)
-});
-`
+	$('.selector').pxuPhotoset({
+		'highRes'   : true, // will use high res images
+		'rounded'   : 'corners', // corners, all or false
+		'exif'      : true, // display EXIF data if available
+		'gutter'    : '10px', // spacing between the images
+		'photoset'  : '.photo-slideshow', // photoset wrapper
+		'photoWrap' : '.photo-data', // photo data wrapper (includes photo, icons + exif)
+		'photo'     : '.photo' // photo wrap (includes photo only)
+	});
 
 For the differences between 'photoset', 'photoWrap' and 'photo', see the tumblr-code.html file.
