@@ -1,8 +1,8 @@
 # PXU Photoset Extended
 
-Version. 1.0.0
-Copyright 2012 Pixel Union
-Licensed under the MIT license
+Version. 1.0.0  
+Copyright 2012 Pixel Union  
+Licensed under the MIT license  
 
 ## Requirements
 
