@@ -232,3 +232,15 @@ In the Custom CSS box, you'll want to include the following styles:
 	});
 
 For the differences between 'photoset', 'photoWrap' and 'photo', see the tumblr-code.html file.
+
+## Infinite Scroll
+
+Are you using Paul Irish's amazing Infinite Scroll? Don't worry, this bad boy will still work. You'll just need to add a little extra to the callback. It should look something like this in its most basic form:
+
+	$('#content').infinitescroll({
+	    navSelector  : "div.navigation",            
+	    nextSelector : "div.navigation a:first",    
+	    itemSelector : "#content div.post"          
+	  },function(newElements){
+	  	$(newElements).find('.photo-slideshow').pxuPhotoset();
+	});
