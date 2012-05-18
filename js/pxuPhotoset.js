@@ -3,7 +3,7 @@
     PXU Photoset Extended
     --------------------------------
     + https://github.com/PixelUnion/Extended-Tumblr-Photoset
-    + Version 1.0.0
+    + Version 1.0.1
     + Copyright 2012 Pixel Union
     + Licensed under the MIT license    
 */
@@ -107,11 +107,11 @@
           $this.find(options.photoWrap).each(function() {
             var
               thisImage    = $(this).find('img')
-              exifCamera   = thisImage.attr('data-camera')
-              exifISO      = thisImage.attr('data-iso')
-              exifAperture = thisImage.attr('data-aperture')
-              exifExposure = thisImage.attr('data-exposure')
-              exifFocal    = thisImage.attr('data-focal');
+              exifCamera   = thisImage.attr('data-camera') || '-'
+              exifISO      = thisImage.attr('data-iso') || '-'
+              exifAperture = thisImage.attr('data-aperture') || '-'
+              exifExposure = thisImage.attr('data-exposure') || '-'
+              exifFocal    = thisImage.attr('data-focal') || '-';
 
             $(this).find('.info').append('<div class="exif"><table><tr><td colspan="2"><span class="label">Camera</span><br>'+exifCamera+'</td></tr><tr><td><span class="label">ISO</span><br>'+exifISO+'</td><td><span class="label">Aperture</span><br>'+exifAperture+'</td></tr><tr><td><span class="label">Exposure</span><br>'+exifExposure+'</td><td><span class="label">Focal Length</span><br>'+exifFocal+'</td></tr></table><span class="arrow-down"></span></div>');
 
@@ -202,6 +202,10 @@
         
         } // end ROUNDED
 
+        // We're done! Add a 'processed' class so people can tie other processes into it
+
+        $this.addClass('processed');
+
       }); // end imagesLoaded
 
       // opacity change on icons
@@ -230,6 +234,5 @@
     }); // end return each
   
   }; // end PXU Photoset Extended
-
 
 })( jQuery );

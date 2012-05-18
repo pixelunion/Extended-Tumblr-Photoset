@@ -1,6 +1,6 @@
 # PXU Photoset Extended
 
-Version. 1.0.0  
+Version. 1.0.1  
 Copyright 2012 Pixel Union  
 Licensed under the MIT license  
 
@@ -33,7 +33,7 @@ Locate your current Tumblr Photoset code and replace it with the following:
 
 	{/block:Photoset}
 
-At the bottom of your theme, before the closing `</body>` tag, insert the following:
+At the bottom of your theme, before the closing `</body>` tag, insert the following (make sure to replace the path to pxuPhotoset.min.js):
 
 	<script type="text/javascript" src="/path/to/js/pxuPhotoset.min.js"></script>
 	<script type="text/javascript">
