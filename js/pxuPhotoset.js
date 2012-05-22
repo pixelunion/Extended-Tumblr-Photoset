@@ -3,7 +3,7 @@
     PXU Photoset Extended
     --------------------------------
     + https://github.com/PixelUnion/Extended-Tumblr-Photoset
-    + Version 1.0.1
+    + Version 1.0.2
     + Copyright 2012 Pixel Union
     + Licensed under the MIT license    
 */
@@ -15,6 +15,7 @@
     var defaults = {
       'highRes'        : true,
       'rounded'        : 'corners',
+      'borderRadius'   : '5px',
       'exif'           : true,
       'gutter'         : '10px',
       'photoset'       : '.photo-slideshow',
@@ -29,7 +30,8 @@
 
       $this.imagesLoaded(function() {
       
-        var layout = $this.attr('data-layout').split('');
+        var getLayout = $this.data('layout');
+        var layout = JSON.stringify(getLayout).split('');
 
         // check how many rows there are
         var rowCount = [];
@@ -107,11 +109,11 @@
           $this.find(options.photoWrap).each(function() {
             var
               thisImage    = $(this).find('img')
-              exifCamera   = thisImage.attr('data-camera') || '-'
-              exifISO      = thisImage.attr('data-iso') || '-'
-              exifAperture = thisImage.attr('data-aperture') || '-'
-              exifExposure = thisImage.attr('data-exposure') || '-'
-              exifFocal    = thisImage.attr('data-focal') || '-';
+              exifCamera   = thisImage.data('camera') || '-'
+              exifISO      = thisImage.data('iso') || '-'
+              exifAperture = thisImage.data('aperture') || '-'
+              exifExposure = thisImage.data('exposure') || '-'
+              exifFocal    = thisImage.data('focal') || '-';
 
             $(this).find('.info').append('<div class="exif"><table><tr><td colspan="2"><span class="label">Camera</span><br>'+exifCamera+'</td></tr><tr><td><span class="label">ISO</span><br>'+exifISO+'</td><td><span class="label">Aperture</span><br>'+exifAperture+'</td></tr><tr><td><span class="label">Exposure</span><br>'+exifExposure+'</td><td><span class="label">Focal Length</span><br>'+exifFocal+'</td></tr></table><span class="arrow-down"></span></div>');
 
@@ -125,7 +127,7 @@
           $this.find(options.photoWrap).each(function() {
             var
               thisImage = $(this).find('img')
-              bigOne    = thisImage.attr('data-highres');
+              bigOne    = thisImage.data('highres');
 
             thisImage.attr('src', bigOne);
           });
@@ -141,10 +143,10 @@
 
           if( rowCount == 1 ) {
             rows.find(options.photoWrap + ':first-child ' + options.photo).css({
-              borderRadius: '5px 0 0 5px'
+              borderRadius: options.borderRadius + ' 0 0 ' + options.borderRadius
             });
             rows.find(options.photoWrap + ':last-child ' + options.photo).css({
-              borderRadius: '0 5px 5px 0'
+              borderRadius: '0 '+ options.borderRadius + ' ' + options.borderRadius + ' 0'
             });
           } else {
 
@@ -154,14 +156,14 @@
                 count = rows.eq(i).find(options.photo).size();
                 if( count == 1 ) {
                   rows.eq(i).find(options.photo).css({
-                    borderRadius: '5px 5px 0 0'
+                    borderRadius: options.borderRadius + ' ' + options.borderRadius + ' 0 0'
                   })
                 } else if ( count == 2 || count == 3 ) {
-                  rows.eq(i).find(options.photo + ':first-child').css({
-                    borderRadius: '5px 0 0 0'
+                  rows.eq(i).find(options.photoWrap + ':first-child ' + options.photo).css({
+                    borderRadius: options.borderRadius + ' 0 0 0'
                   });
-                  rows.eq(i).find(options.photo + ':last-child').css({
-                    borderRadius: '0 5px 0 0'
+                  rows.eq(i).find(options.photoWrap + ':last-child ' + options.photo).css({
+                    borderRadius: '0 '+options.borderRadius +' 0 0'
                   })
                 } 
               }
@@ -170,14 +172,14 @@
                 count = rows.eq(i).find(options.photo).size();
                 if( count == 1 ) {
                   rows.eq(i).find(options.photo).css({
-                    borderRadius: '0 0 5px 5px'
+                    borderRadius: '0 0 '+options.borderRadius +' '+options.borderRadius
                   })
                 } else if ( count == 2 || count == 3 ) {
                   rows.eq(i).find(options.photoWrap + ':first-child ' + options.photo).css({
-                    borderRadius: '0 0 0 5px'
+                    borderRadius: '0 0 0 '+options.borderRadius
                   });
                   rows.eq(i).find(options.photoWrap + ':last-child ' + options.photo).css({
-                    borderRadius: '0 0 5px 0'
+                    borderRadius: '0 0 '+options.borderRadius +' 0'
                   })
                 }
               } // end last row
@@ -191,7 +193,7 @@
         // Round the corners on the top and bottom rows
         if( options.rounded == 'all' ) {
 
-          $this.find(options.photo).css({ borderRadius: '5px' });
+          $this.find(options.photo).css({ borderRadius: options.borderRadius });
         
         } // end ROUNDED
 
@@ -210,8 +212,8 @@
 
       // opacity change on icons
       $(options.photoWrap)
-      .live("mouseenter", function() { $(this).find('.icons').stop(true, false).animate({opacity: 1}, 200); } )
-      .live("mouseleave", function() { $(this).find('.icons').stop(true, false).animate({opacity: 0}, 200); } );
+      .live("mouseenter", function() { $(this).find('.icons').css("visibility", "visible"); } )
+      .live("mouseleave", function() { $(this).find('.icons').css("visibility", "hidden"); } );
 
       // display exif info
       $("span.info")

@@ -76,9 +76,7 @@
   height: 60px;
   text-indent: -9999px;
   z-index: 999;
-  opacity: 0;
-  filter: alpha(opacity = 0);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  visibility: hidden;
 }
 
 .icons > span, .icons .view span {
