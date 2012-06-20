@@ -1,6 +1,6 @@
 # PXU Photoset Extended
 
-Version. 1.0.2  
+Version. 1.0.3  
 Copyright 2012 Pixel Union  
 Licensed under the MIT license  
 
@@ -40,6 +40,8 @@ At the bottom of your theme, before the closing `</body>` tag, insert the follow
 	$(document).ready(function() {
 		$('.photo-slideshow').pxuPhotoset({
 			// options go here
+		}, function() {
+			// callback
 		});
 	});
 	</script>
@@ -59,6 +61,16 @@ In the Custom CSS box, add the styles from <a href="https://github.com/PixelUnio
 	});
 
 For the differences between 'photoset', 'photoWrap' and 'photo', see the tumblr-code.html file.
+
+## Callback
+
+Optional callback. Here's an example where we've set the opacity of our slideshow to 0 in our CSS and now that we've got all of our images loaded up and working we'll show them:
+
+	$('.photo-slideshow').pxuPhotoset({
+		// options go here
+	}, function() {
+		$(this).animate({opacity:1});
+	});
 
 ## Infinite Scroll
 

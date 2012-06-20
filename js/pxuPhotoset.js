@@ -3,14 +3,14 @@
     PXU Photoset Extended
     --------------------------------
     + https://github.com/PixelUnion/Extended-Tumblr-Photoset
-    + Version 1.0.2
+    + Version 1.0.3
     + Copyright 2012 Pixel Union
     + Licensed under the MIT license    
 */
 
 (function( $ ){
 
-  $.fn.pxuPhotoset = function( options ) {
+  $.fn.pxuPhotoset = function( options, callback ) {
 
     var defaults = {
       'highRes'        : true,
@@ -207,6 +207,11 @@
         // We're done! Add a 'processed' class so people can tie other processes into it
 
         $this.addClass('processed');
+
+        // callback if provided
+        if (typeof callback == 'function') { // make sure the callback is a function
+            callback.call(this);
+        }
 
       }); // end imagesLoaded
 
