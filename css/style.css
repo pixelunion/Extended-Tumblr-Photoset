@@ -73,7 +73,7 @@
   top: 5px;
   right: 5px;
   width: 20px;
-  height: 60px;
+  height: 66px;
   text-indent: -9999px;
   z-index: 999;
   visibility: hidden;
@@ -96,11 +96,11 @@
   position: relative;
 }
 
-/* EXIF Data Tooltip */
+/* EXIF & CAPTION Data Tooltip */
 
-.exif {
+.pxu-data {
   position: absolute;
-  top: -175px;
+  top: 30px;
   left: -110px;
   width: 240px;
   background: #000;
@@ -127,27 +127,45 @@
 
 }
 
-.exif table {
+.pxu-caption {
+  margin-top: 0;
+  word-wrap: break-word;
+}
+
+.pxu-caption:before {
+  content: url('http://static.tumblr.com/hugxd2w/SSBm6wxmm/caption-icon.png');
+  opacity: 0.5;
+  filter: alpha(opacity = 50);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  float: left;
+  margin-right: 5px;
+}
+
+.pxu-data.caption-only .pxu-caption {
+  margin-bottom: 0;
+}
+
+.pxu-data table {
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: bold;
   width: 100%;
 }
 
-.exif table tr {
+.pxu-data table tr {
   width: 100%;
 }
 
-.exif table tr td {
+.pxu-data table tr td {
   width: 50%;
   font-weight: bold;
   padding-bottom: 15px;
 }
 
-.exif table tr:last-child td {
+.pxu-data table tr:last-child td {
   padding-bottom: 0;
 }
 
-.exif .label {
+.pxu-data .label {
   color: #cccccc;
   text-transform: uppercase;
   font-size: 10px;
@@ -162,9 +180,9 @@
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 
-  border-top: 10px solid rgba(0,0,0,0.85);
+  border-bottom: 10px solid rgba(0,0,0,0.85);
 
   position: absolute;
-  bottom: -10px;
+  top: -10px;
   left: 110px;
 }

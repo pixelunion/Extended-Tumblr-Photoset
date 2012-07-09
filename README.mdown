@@ -53,14 +53,13 @@ In the Custom CSS box, add the styles from <a href="https://github.com/PixelUnio
 	$('.selector').pxuPhotoset({
 		'highRes'   : true, // will use high res images
 		'rounded'   : 'corners', // corners, all or false
-		'exif'      : true, // display EXIF data if available
+		'exif'      : true, // display EXIF data if available (tooltip)
+		'captions'  : true, // display individual captions on photos (tooltip)
 		'gutter'    : '10px', // spacing between the images
 		'photoset'  : '.photo-slideshow', // photoset wrapper
 		'photoWrap' : '.photo-data', // photo data wrapper (includes photo, icons + exif)
 		'photo'     : '.photo' // photo wrap (includes photo only)
 	});
-
-For the differences between 'photoset', 'photoWrap' and 'photo', see the tumblr-code.html file.
 
 ## Callback
 

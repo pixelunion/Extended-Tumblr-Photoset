@@ -3,7 +3,7 @@
     PXU Photoset Extended
     --------------------------------
     + https://github.com/PixelUnion/Extended-Tumblr-Photoset
-    + Version 1.0.3
+    + Version 1.1.0
     + Copyright 2012 Pixel Union
     + Licensed under the MIT license    
 */
@@ -17,6 +17,7 @@
       'rounded'        : 'corners',
       'borderRadius'   : '5px',
       'exif'           : true,
+      'captions'       : true,
       'gutter'         : '10px',
       'photoset'       : '.photo-slideshow',
       'photoWrap'      : '.photo-data',
@@ -102,31 +103,106 @@
         $this.find('.count-3').parents('.row').css({height: c3min});
         $this.find('.count-3').children(options.photo).css({height: c3min});
 
+
+        // EXIF data and CAPTIONS enabled
+        if( options.exif == true && options.captions == true ) {
+
+          $this.find(options.photoWrap).each(function() { 
+
+            var
+              thisImage = $(this).find('img');
+
+            var exifData;
+            var pxuCaption;
+
+            if( thisImage.hasClass('exif-yes') ) {
+              // exif data avialable
+
+              var
+                exifCamera   = thisImage.data('camera') || '-'
+                exifISO      = thisImage.data('iso') || '-'
+                exifAperture = thisImage.data('aperture') || '-'
+                exifExposure = thisImage.data('exposure') || '-'
+                exifFocal    = thisImage.data('focal') || '-';
+
+              exifData = '<table class="exif"><tr><td colspan="2"><span class="label">Camera</span><br>'+exifCamera+'</td></tr><tr><td><span class="label">ISO</span><br>'+exifISO+'</td><td><span class="label">Aperture</span><br>'+exifAperture+'</td></tr><tr><td><span class="label">Exposure</span><br>'+exifExposure+'</td><td><span class="label">Focal Length</span><br>'+exifFocal+'</td></tr></table>';
+            } else {
+              exifData = ''
+            }
+
+            if( thisImage.hasClass('caption-yes') ) {
+              var getCaption = thisImage.data('caption');
+              pxuCaption = '<p class="pxu-caption">'+getCaption+'</p>';
+            } else {
+              pxuCaption = '';
+            }
+
+            if( pxuCaption != '' || exifData != '' ) {
+              $(this).find('.info').append('<div class="pxu-data">'+pxuCaption+exifData+'<span class="arrow-down"></span></div>'); 
+
+              if( exifData == '' ) {
+                $(this).find('.pxu-data').addClass('caption-only');
+              }           
+
+              $(this).find('span.info').css('display','block');
+            }
+            
+          });
+
+        }
         
-        // Roll through EXIF data
-        if( options.exif == true ) {
+        // Roll through EXIF data ONLY
+        else if( options.exif == true ) {
 
           $this.find(options.photoWrap).each(function() {
-            var
-              thisImage    = $(this).find('img')
-              exifCamera   = thisImage.data('camera') || '-'
-              exifISO      = thisImage.data('iso') || '-'
-              exifAperture = thisImage.data('aperture') || '-'
-              exifExposure = thisImage.data('exposure') || '-'
-              exifFocal    = thisImage.data('focal') || '-';
+            var thisImage = $(this).find('img');
 
-            $(this).find('.info').append('<div class="exif"><table><tr><td colspan="2"><span class="label">Camera</span><br>'+exifCamera+'</td></tr><tr><td><span class="label">ISO</span><br>'+exifISO+'</td><td><span class="label">Aperture</span><br>'+exifAperture+'</td></tr><tr><td><span class="label">Exposure</span><br>'+exifExposure+'</td><td><span class="label">Focal Length</span><br>'+exifFocal+'</td></tr></table><span class="arrow-down"></span></div>');
+            if( thisImage.hasClass('exif-yes') ) {
+              // exif data avialable
 
-            $this.find('span.info').css('display','block');
+              var
+                exifCamera   = thisImage.data('camera') || '-'
+                exifISO      = thisImage.data('iso') || '-'
+                exifAperture = thisImage.data('aperture') || '-'
+                exifExposure = thisImage.data('exposure') || '-'
+                exifFocal    = thisImage.data('focal') || '-';
+
+              var exifData = '<table class="exif"><tr><td colspan="2"><span class="label">Camera</span><br>'+exifCamera+'</td></tr><tr><td><span class="label">ISO</span><br>'+exifISO+'</td><td><span class="label">Aperture</span><br>'+exifAperture+'</td></tr><tr><td><span class="label">Exposure</span><br>'+exifExposure+'</td><td><span class="label">Focal Length</span><br>'+exifFocal+'</td></tr></table><span class="arrow-down"></span>';
+            
+              $(this).find('.info').append('<div class="pxu-data">'+exifData+'</div>');            
+
+              $(this).find('span.info').css('display','block');
+            }            
+         
           });
 
         } // end EXIF
+
+        // Roll through caption data ONLY
+        else if( options.captions == true ) {
+
+          $this.find(options.photoWrap).each(function() {
+            var thisImage  = $(this).find('img');
+
+            if( thisImage.hasClass('caption-yes') ) {
+              var getCaption = thisImage.data('caption');
+              var pxuCaption = '<p class="pxu-caption" style="margin:0;">'+getCaption+'</p>';
+
+              $(this).find('.info').append('<div class="pxu-data caption-only">'+pxuCaption+'<span class="arrow-down"></span></div>');            
+
+              $(this).find('span.info').css('display','block');
+
+            }
+            
+          });
+
+        } // end CAPTIONS
 
         // Roll through HighRes data and replace the images
         if( options.highRes == true ) {
           $this.find(options.photoWrap).each(function() {
             var
-              thisImage = $(this).find('img')
+              thisImage = $(this).find('.photo img')
               bigOne    = thisImage.data('highres');
 
             thisImage.attr('src', bigOne);
@@ -220,19 +296,19 @@
       .live("mouseenter", function() { $(this).find('.icons').css("visibility", "visible"); } )
       .live("mouseleave", function() { $(this).find('.icons').css("visibility", "hidden"); } );
 
-      // display exif info
+      // display photo info
       $("span.info")
       .live("mouseenter", function() {
         var 
           toggle = $(this)
-          exifData = toggle.children('.exif');
+          exifData = toggle.children('.pxu-data');
         exifData.css('display','block').stop(true, false).animate({opacity: 1}, 200);        
       });
       $("span.info")
       .live("mouseleave", function() {
         var 
           toggle = $(this)
-          exifData = toggle.children('.exif');
+          exifData = toggle.children('.pxu-data');
         exifData.stop(true, false).animate({opacity: 0}, 200, function() {
           $(this).css('display','none');
         });        
