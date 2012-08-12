@@ -88,4 +88,5 @@ Are you using Paul Irish's amazing Infinite Scroll? Don't worry, this bad boy wi
 	    itemSelector : "#content div.post"          
 	  },function(newElements){
 	  	$(newElements).find('.photo-slideshow').pxuPhotoset();
+    }
 	});
