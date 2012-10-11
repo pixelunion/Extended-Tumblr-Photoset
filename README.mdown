@@ -11,7 +11,7 @@ Licensed under the MIT license
 
 ## Features
 
-* **NEW in v1.2** - totally responsive! Load it up in your responsive Tumblr theme
+* Completely Responsive
 * Captions and EXIF data available in rollover tooltips
 * Enable high resolution images when your content is wider than 500px
 * Customizable options like rounded corners, bigger gutters, and more
