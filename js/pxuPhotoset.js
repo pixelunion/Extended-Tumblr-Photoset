@@ -223,7 +223,7 @@
                                     rows.eq(row).find(settings.photo).css({
                                         borderRadius: settings.borderRadius + ' ' + settings.borderRadius + ' 0 0'
                                     });
-                                } else if ( count == 2 || count == 3 ) {
+                                } else {
                                     rows.eq(row).find(settings.photoWrap + ':first-child ' + settings.photo).css({
                                         borderRadius: settings.borderRadius + ' 0 0 0'
                                     });
