@@ -22,6 +22,7 @@ Licensed under the MIT license
 
 *   Updated to reflect changes in Tumblr's default photoset. Each row's height is now calculated independently, which should give users some flexibility in using portrait images.
 *   Removed the deprecated `live()` in favour for `on()`
+*   Went through entire JS with JSHint and fixed a bunch of non-fatal bugs
 
 **1.2.0**
 
