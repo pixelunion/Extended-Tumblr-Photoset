@@ -24,7 +24,7 @@
             'photo'          : '.photo'
         };
 
-        var options = $.extend(defaults, options);
+        var settings = $.extend(defaults, options);
 
         return this.each(function() {
             var $this = $(this);
@@ -48,11 +48,11 @@
                     // incremently add images so that we can split() them and make the rows
                     var pN = 0;
                     for(p = 0; p < i + 1; ++p ) {
-                        increment = parseInt(layout[p]);
+                        var increment = parseInt(layout[p],10);
                         pN += increment;
                     }
                     
-                    var lN = parseInt(layout[i]);
+                    var lN = parseInt(layout[i],10);
                     // result = (row, image count, last image in row)
                     result[i] = Array(rowCount[i], lN, pN);
                 }
@@ -62,19 +62,19 @@
 
                     var pC;
                     if( result[i-1] === undefined ) {
-                        pC = 0
+                        pC = 0;
                     } else {
-                        pC = result[i-1][2]
+                        pC = result[i-1][2];
                     }
 
-                    $this.find(options.photoWrap)
+                    $this.find(settings.photoWrap)
                         .slice(pC,result[i][2]).addClass('count-' + result[i][1]).wrapAll('<div class="row clearit" />');
 
                 } // end create rows
 
                 // apply gutter
-                $(this).find('.row').css('margin-bottom',options.gutter);
-                $(this).find(options.photoWrap+':not(:first-child) ' + options.photo + ' img').css('margin-left', options.gutter);
+                $(this).find('.row').css('margin-bottom',settings.gutter);
+                $(this).find(settings.photoWrap+':not(:first-child) ' + settings.photo + ' img').css('margin-left', settings.gutter);
 
                 // our function to find the minimum value
                 Array.min = function( array ){
@@ -85,13 +85,13 @@
                     photoset.find('.row').each(function() {
                         // check how many images are in this row
                         var currentRow = $(this);
-                        var photoCount = currentRow.find(options.photoWrap).length;
+                        var photoCount = currentRow.find(settings.photoWrap).length;
                         if( photoCount > 0 ) {
-                            var imageHeights = currentRow.find(options.photo+' img').map(function() {
+                            var imageHeights = currentRow.find(settings.photo+' img').map(function() {
                                 return $(this).height();
                             }).get();
                             var smallestHeight = Array.min(imageHeights);
-                            currentRow.height(smallestHeight).find(options.photo).height(smallestHeight);
+                            currentRow.height(smallestHeight).find(settings.photo).height(smallestHeight);
                         }
                     });
                 }
@@ -102,9 +102,9 @@
 
 
                 // EXIF data and CAPTIONS enabled
-                if( options.exif == true && options.captions == true ) {
+                if( settings.exif && settings.captions ) {
 
-                    $this.find(options.photoWrap).each(function() { 
+                    $this.find(settings.photoWrap).each(function() { 
 
                         var
                             thisImage = $(this).find('img');
@@ -115,16 +115,15 @@
                         if( thisImage.hasClass('exif-yes') ) {
                             // exif data avialable
 
-                            var
-                                exifCamera   = thisImage.data('camera') || '-'
-                                exifISO      = thisImage.data('iso') || '-'
-                                exifAperture = thisImage.data('aperture') || '-'
-                                exifExposure = thisImage.data('exposure') || '-'
-                                exifFocal    = thisImage.data('focal') || '-';
+                            var exifCamera   = thisImage.data('camera') || '-';
+                            var exifISO      = thisImage.data('iso') || '-';
+                            var exifAperture = thisImage.data('aperture') || '-';
+                            var exifExposure = thisImage.data('exposure') || '-';
+                            var exifFocal    = thisImage.data('focal') || '-';
 
                             exifData = '<table class="exif"><tr><td colspan="2"><span class="label">Camera</span><br>'+exifCamera+'</td></tr><tr><td><span class="label">ISO</span><br>'+exifISO+'</td><td><span class="label">Aperture</span><br>'+exifAperture+'</td></tr><tr><td><span class="label">Exposure</span><br>'+exifExposure+'</td><td><span class="label">Focal Length</span><br>'+exifFocal+'</td></tr></table>';
                         } else {
-                            exifData = ''
+                            exifData = '';
                         }
 
                         if( thisImage.hasClass('caption-yes') ) {
@@ -134,7 +133,7 @@
                             pxuCaption = '';
                         }
 
-                        if( pxuCaption != '' || exifData != '' ) {
+                        if( pxuCaption !== '' || exifData !== '' ) {
                             $(this).find('.info').append('<div class="pxu-data">'+pxuCaption+exifData+'<span class="arrow-down"></span></div>'); 
 
                             if( exifData == '' ) {
@@ -149,9 +148,9 @@
                 }
                 
                 // Roll through EXIF data ONLY
-                else if( options.exif == true ) {
+                else if( settings.exif ) {
 
-                    $this.find(options.photoWrap).each(function() {
+                    $this.find(settings.photoWrap).each(function() {
                         var thisImage = $(this).find('img');
 
                         if( thisImage.hasClass('exif-yes') ) {
@@ -176,9 +175,9 @@
                 } // end EXIF
 
                 // Roll through caption data ONLY
-                else if( options.captions == true ) {
+                else if( settings.captions ) {
 
-                    $this.find(options.photoWrap).each(function() {
+                    $this.find(settings.photoWrap).each(function() {
                         var thisImage  = $(this).find('img');
 
                         if( thisImage.hasClass('caption-yes') ) {
@@ -196,8 +195,8 @@
                 } // end CAPTIONS
 
                 // Roll through HighRes data and replace the images
-                if( options.highRes == true ) {
-                    $this.find(options.photoWrap).each(function() {
+                if( settings.highRes ) {
+                    $this.find(settings.photoWrap).each(function() {
                         var
                             thisImage = $(this).find('.photo img')
                             bigOne    = thisImage.data('highres');
@@ -207,7 +206,7 @@
                 } // end HIGH RES
 
                 // Round the corners on the top and bottom rows
-                if( options.rounded == 'corners' ) {
+                if( settings.rounded == 'corners' ) {
 
                     var
                         rows = $this.find('.row'),
@@ -215,44 +214,44 @@
                         lastRow = ($this.find('.row').size()) - 1;
 
                     if( rowCount == 1 ) {
-                        rows.find(options.photoWrap + ':first-child ' + options.photo).css({
-                            borderRadius: options.borderRadius + ' 0 0 ' + options.borderRadius
+                        rows.find(settings.photoWrap + ':first-child ' + settings.photo).css({
+                            borderRadius: settings.borderRadius + ' 0 0 ' + settings.borderRadius
                         });
-                        rows.find(options.photoWrap + ':last-child ' + options.photo).css({
-                            borderRadius: '0 '+ options.borderRadius + ' ' + options.borderRadius + ' 0'
+                        rows.find(settings.photoWrap + ':last-child ' + settings.photo).css({
+                            borderRadius: '0 '+ settings.borderRadius + ' ' + settings.borderRadius + ' 0'
                         });
                     } else {
 
                         for (var i = 0; i < rows.length; i++) {
                                 
                             if( i == 0 ) {
-                                count = rows.eq(i).find(options.photo).size();
+                                count = rows.eq(i).find(settings.photo).size();
                                 if( count == 1 ) {
-                                    rows.eq(i).find(options.photo).css({
-                                        borderRadius: options.borderRadius + ' ' + options.borderRadius + ' 0 0'
+                                    rows.eq(i).find(settings.photo).css({
+                                        borderRadius: settings.borderRadius + ' ' + settings.borderRadius + ' 0 0'
                                     })
                                 } else if ( count == 2 || count == 3 ) {
-                                    rows.eq(i).find(options.photoWrap + ':first-child ' + options.photo).css({
-                                        borderRadius: options.borderRadius + ' 0 0 0'
+                                    rows.eq(i).find(settings.photoWrap + ':first-child ' + settings.photo).css({
+                                        borderRadius: settings.borderRadius + ' 0 0 0'
                                     });
-                                    rows.eq(i).find(options.photoWrap + ':last-child ' + options.photo).css({
-                                        borderRadius: '0 '+options.borderRadius +' 0 0'
+                                    rows.eq(i).find(settings.photoWrap + ':last-child ' + settings.photo).css({
+                                        borderRadius: '0 '+settings.borderRadius +' 0 0'
                                     })
                                 } 
                             }
 
                             if( i == lastRow) {
-                                count = rows.eq(i).find(options.photo).size();
+                                count = rows.eq(i).find(settings.photo).size();
                                 if( count == 1 ) {
-                                    rows.eq(i).find(options.photo).css({
-                                        borderRadius: '0 0 '+options.borderRadius +' '+options.borderRadius
+                                    rows.eq(i).find(settings.photo).css({
+                                        borderRadius: '0 0 '+settings.borderRadius +' '+settings.borderRadius
                                     })
                                 } else if ( count == 2 || count == 3 ) {
-                                    rows.eq(i).find(options.photoWrap + ':first-child ' + options.photo).css({
-                                        borderRadius: '0 0 0 '+options.borderRadius
+                                    rows.eq(i).find(settings.photoWrap + ':first-child ' + settings.photo).css({
+                                        borderRadius: '0 0 0 '+settings.borderRadius
                                     });
-                                    rows.eq(i).find(options.photoWrap + ':last-child ' + options.photo).css({
-                                        borderRadius: '0 0 '+options.borderRadius +' 0'
+                                    rows.eq(i).find(settings.photoWrap + ':last-child ' + settings.photo).css({
+                                        borderRadius: '0 0 '+settings.borderRadius +' 0'
                                     })
                                 }
                             } // end last row
@@ -264,16 +263,16 @@
                 } // end ROUNDED
 
                 // Round the corners on the top and bottom rows
-                if( options.rounded == 'all' ) {
+                if( settings.rounded == 'all' ) {
 
-                    $this.find(options.photo).css({ borderRadius: options.borderRadius });
+                    $this.find(settings.photo).css({ borderRadius: settings.borderRadius });
                 
                 } // end ROUNDED
 
                 // Round the corners on the top and bottom rows
-                if( options.rounded == false ) {
+                if( settings.rounded == false ) {
 
-                    $this.find(options.photo).css({ borderRadius: 0 });
+                    $this.find(settings.photo).css({ borderRadius: 0 });
                 
                 } // end ROUNDED
 
@@ -289,7 +288,7 @@
             }); // end imagesLoaded
 
             // opacity change on icons
-            $(options.photoWrap)
+            $(settings.photoWrap)
             .on("mouseenter", function() { $(this).find('.icons').css("visibility", "visible"); } )
             .on("mouseleave", function() { $(this).find('.icons').css("visibility", "hidden"); } );
 
