@@ -33,12 +33,7 @@
             
                 var getLayout = $this.data('layout');
                 var layout = JSON.stringify(getLayout).split('');
-
-                // check how many rows there are
-                var rowCount = [];
-                for (var i = 1; i < layout.length + 1; i++) {
-                    rowCount.push(i);
-                }
+                var rowCount = layout.length;
 
                 // here we are going to combine rows, image count per row, 
                 // and the last image number in each row (of total images)
@@ -58,7 +53,7 @@
                 }
 
                 // create our rows
-                for (var i = 0; i < rowCount.length; i++) {
+                for (var i = 1; i <= rowCount; i++) {
 
                     var pC;
                     if( result[i-1] === undefined ) {
