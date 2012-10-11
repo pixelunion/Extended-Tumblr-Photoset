@@ -244,7 +244,7 @@
                                     rows.eq(row).find(settings.photo).css({
                                         borderRadius: '0 0 '+settings.borderRadius +' '+settings.borderRadius
                                     });
-                                } else if ( count == 2 || count == 3 ) {
+                                } else {
                                     rows.eq(row).find(settings.photoWrap + ':first-child ' + settings.photo).css({
                                         borderRadius: '0 0 0 '+settings.borderRadius
                                     });
