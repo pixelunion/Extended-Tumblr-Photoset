@@ -212,10 +212,11 @@
                             borderRadius: '0 '+ settings.borderRadius + ' ' + settings.borderRadius + ' 0'
                         });
                     } else {
-
-                        for (var row = 0; row < rows.length; row++) {
-                                
+                        // more than one row
+                        for (var row = 0; row < rowCount; row++) {
+                            var count;
                             if( row === 0 ) {
+                                // first row
                                 count = rows.eq(row).find(settings.photo).size();
                                 if( count == 1 ) {
                                     rows.eq(row).find(settings.photo).css({
@@ -231,7 +232,8 @@
                                 } 
                             }
 
-                            if( row == lastRow) {
+                            if( row == rowCount-1) {
+                                // we're on the last row
                                 count = rows.eq(row).find(settings.photo).size();
                                 if( count == 1 ) {
                                     rows.eq(row).find(settings.photo).css({
