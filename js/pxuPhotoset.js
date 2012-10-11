@@ -136,7 +136,7 @@
                         if( pxuCaption !== '' || exifData !== '' ) {
                             $(this).find('.info').append('<div class="pxu-data">'+pxuCaption+exifData+'<span class="arrow-down"></span></div>'); 
 
-                            if( exifData == '' ) {
+                            if( exifData === '' ) {
                                 $(this).find('.pxu-data').addClass('caption-only');
                             }           
 
@@ -156,12 +156,11 @@
                         if( thisImage.hasClass('exif-yes') ) {
                             // exif data avialable
 
-                            var
-                                exifCamera   = thisImage.data('camera') || '-'
-                                exifISO      = thisImage.data('iso') || '-'
-                                exifAperture = thisImage.data('aperture') || '-'
-                                exifExposure = thisImage.data('exposure') || '-'
-                                exifFocal    = thisImage.data('focal') || '-';
+                            var exifCamera   = thisImage.data('camera') || '-';
+                            var exifISO      = thisImage.data('iso') || '-';
+                            var exifAperture = thisImage.data('aperture') || '-';
+                            var exifExposure = thisImage.data('exposure') || '-';
+                            var exifFocal    = thisImage.data('focal') || '-';
 
                             var exifData = '<table class="exif"><tr><td colspan="2"><span class="label">Camera</span><br>'+exifCamera+'</td></tr><tr><td><span class="label">ISO</span><br>'+exifISO+'</td><td><span class="label">Aperture</span><br>'+exifAperture+'</td></tr><tr><td><span class="label">Exposure</span><br>'+exifExposure+'</td><td><span class="label">Focal Length</span><br>'+exifFocal+'</td></tr></table><span class="arrow-down"></span>';
                         
@@ -197,9 +196,8 @@
                 // Roll through HighRes data and replace the images
                 if( settings.highRes ) {
                     $this.find(settings.photoWrap).each(function() {
-                        var
-                            thisImage = $(this).find('.photo img')
-                            bigOne    = thisImage.data('highres');
+                        var thisImage = $(this).find('.photo img');
+                        var bigOne    = thisImage.data('highres');
 
                         thisImage.attr('src', bigOne);
                     });
@@ -210,10 +208,10 @@
 
                     var
                         rows = $this.find('.row'),
-                        rowCount = $this.find('.row').size(),
+                        numberOfRows = $this.find('.row').size(),
                         lastRow = ($this.find('.row').size()) - 1;
 
-                    if( rowCount == 1 ) {
+                    if( numberOfRows == 1 ) {
                         rows.find(settings.photoWrap + ':first-child ' + settings.photo).css({
                             borderRadius: settings.borderRadius + ' 0 0 ' + settings.borderRadius
                         });
@@ -224,19 +222,19 @@
 
                         for (var i = 0; i < rows.length; i++) {
                                 
-                            if( i == 0 ) {
+                            if( i === 0 ) {
                                 count = rows.eq(i).find(settings.photo).size();
                                 if( count == 1 ) {
                                     rows.eq(i).find(settings.photo).css({
                                         borderRadius: settings.borderRadius + ' ' + settings.borderRadius + ' 0 0'
-                                    })
+                                    });
                                 } else if ( count == 2 || count == 3 ) {
                                     rows.eq(i).find(settings.photoWrap + ':first-child ' + settings.photo).css({
                                         borderRadius: settings.borderRadius + ' 0 0 0'
                                     });
                                     rows.eq(i).find(settings.photoWrap + ':last-child ' + settings.photo).css({
                                         borderRadius: '0 '+settings.borderRadius +' 0 0'
-                                    })
+                                    });
                                 } 
                             }
 
@@ -245,14 +243,14 @@
                                 if( count == 1 ) {
                                     rows.eq(i).find(settings.photo).css({
                                         borderRadius: '0 0 '+settings.borderRadius +' '+settings.borderRadius
-                                    })
+                                    });
                                 } else if ( count == 2 || count == 3 ) {
                                     rows.eq(i).find(settings.photoWrap + ':first-child ' + settings.photo).css({
                                         borderRadius: '0 0 0 '+settings.borderRadius
                                     });
                                     rows.eq(i).find(settings.photoWrap + ':last-child ' + settings.photo).css({
                                         borderRadius: '0 0 '+settings.borderRadius +' 0'
-                                    })
+                                    });
                                 }
                             } // end last row
 
@@ -270,7 +268,7 @@
                 } // end ROUNDED
 
                 // Round the corners on the top and bottom rows
-                if( settings.rounded == false ) {
+                if( !settings.rounded ) {
 
                     $this.find(settings.photo).css({ borderRadius: 0 });
                 
@@ -295,16 +293,14 @@
             // display photo info
             $("span.info")
             .on("mouseenter", function() {
-                var 
-                    toggle = $(this)
-                    exifData = toggle.children('.pxu-data');
+                var toggle = $(this);
+                var exifData = toggle.children('.pxu-data');
                 exifData.css('display','block').stop(true, false).animate({opacity: 1}, 200);        
             });
             $("span.info")
             .on("mouseleave", function() {
-                var 
-                    toggle = $(this)
-                    exifData = toggle.children('.pxu-data');
+                var toggle = $(this);
+                var exifData = toggle.children('.pxu-data');
                 exifData.stop(true, false).animate({opacity: 0}, 200, function() {
                     $(this).css('display','none');
                 });        
