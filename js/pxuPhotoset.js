@@ -37,19 +37,19 @@
 
                 // here we are going to combine rows, image count per row, 
                 // and the last image number in each row (of total images)
-                var result=[];
-                for (i = 0; i < rowCount.length; ++i) {
+                var rowArray=[];
+                for (i = 1; i <= rowCount; ++i) {
 
                     // incremently add images so that we can split() them and make the rows
-                    var pN = 0;
-                    for(p = 0; p < i + 1; ++p ) {
+                    var lastImageInRow = 0;
+                    for(var p = 0; p < i; ++p ) {
                         var increment = parseInt(layout[p],10);
-                        pN += increment;
+                        lastImageInRow += increment;
                     }
                     
-                    var lN = parseInt(layout[i],10);
-                    // result = (row, image count, last image in row)
-                    result[i] = Array(rowCount[i], lN, pN);
+                    var rowImageCount = parseInt(layout[i-1],10);
+                    // rowArray = (row number, images in row, last image in row)
+                    rowArray[i] = Array(i, rowImageCount, lastImageInRow);
                 }
 
                 // create our rows
