@@ -220,35 +220,35 @@
                         });
                     } else {
 
-                        for (var i = 0; i < rows.length; i++) {
+                        for (var row = 0; row < rows.length; row++) {
                                 
-                            if( i === 0 ) {
-                                count = rows.eq(i).find(settings.photo).size();
+                            if( row === 0 ) {
+                                count = rows.eq(row).find(settings.photo).size();
                                 if( count == 1 ) {
-                                    rows.eq(i).find(settings.photo).css({
+                                    rows.eq(row).find(settings.photo).css({
                                         borderRadius: settings.borderRadius + ' ' + settings.borderRadius + ' 0 0'
                                     });
                                 } else if ( count == 2 || count == 3 ) {
-                                    rows.eq(i).find(settings.photoWrap + ':first-child ' + settings.photo).css({
+                                    rows.eq(row).find(settings.photoWrap + ':first-child ' + settings.photo).css({
                                         borderRadius: settings.borderRadius + ' 0 0 0'
                                     });
-                                    rows.eq(i).find(settings.photoWrap + ':last-child ' + settings.photo).css({
+                                    rows.eq(row).find(settings.photoWrap + ':last-child ' + settings.photo).css({
                                         borderRadius: '0 '+settings.borderRadius +' 0 0'
                                     });
                                 } 
                             }
 
-                            if( i == lastRow) {
-                                count = rows.eq(i).find(settings.photo).size();
+                            if( row == lastRow) {
+                                count = rows.eq(row).find(settings.photo).size();
                                 if( count == 1 ) {
-                                    rows.eq(i).find(settings.photo).css({
+                                    rows.eq(row).find(settings.photo).css({
                                         borderRadius: '0 0 '+settings.borderRadius +' '+settings.borderRadius
                                     });
                                 } else if ( count == 2 || count == 3 ) {
-                                    rows.eq(i).find(settings.photoWrap + ':first-child ' + settings.photo).css({
+                                    rows.eq(row).find(settings.photoWrap + ':first-child ' + settings.photo).css({
                                         borderRadius: '0 0 0 '+settings.borderRadius
                                     });
-                                    rows.eq(i).find(settings.photoWrap + ':last-child ' + settings.photo).css({
+                                    rows.eq(row).find(settings.photoWrap + ':last-child ' + settings.photo).css({
                                         borderRadius: '0 0 '+settings.borderRadius +' 0'
                                     });
                                 }
