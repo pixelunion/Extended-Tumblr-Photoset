@@ -115,11 +115,11 @@
                         if( thisImage.hasClass('exif-yes') ) {
                             // exif data avialable
 
-                            var exifCamera   = thisImage.data('camera') || '-';
-                            var exifISO      = thisImage.data('iso') || '-';
+                            var exifCamera   = thisImage.data('camera')   || '-';
+                            var exifISO      = thisImage.data('iso')      || '-';
                             var exifAperture = thisImage.data('aperture') || '-';
                             var exifExposure = thisImage.data('exposure') || '-';
-                            var exifFocal    = thisImage.data('focal') || '-';
+                            var exifFocal    = thisImage.data('focal')    || '-';
 
                             exifData = '<table class="exif"><tr><td colspan="2"><span class="label">Camera</span><br>'+exifCamera+'</td></tr><tr><td><span class="label">ISO</span><br>'+exifISO+'</td><td><span class="label">Aperture</span><br>'+exifAperture+'</td></tr><tr><td><span class="label">Exposure</span><br>'+exifExposure+'</td><td><span class="label">Focal Length</span><br>'+exifFocal+'</td></tr></table>';
                         } else {
@@ -156,11 +156,11 @@
                         if( thisImage.hasClass('exif-yes') ) {
                             // exif data avialable
 
-                            var exifCamera   = thisImage.data('camera') || '-';
-                            var exifISO      = thisImage.data('iso') || '-';
+                            var exifCamera   = thisImage.data('camera')   || '-';
+                            var exifISO      = thisImage.data('iso')      || '-';
                             var exifAperture = thisImage.data('aperture') || '-';
                             var exifExposure = thisImage.data('exposure') || '-';
-                            var exifFocal    = thisImage.data('focal') || '-';
+                            var exifFocal    = thisImage.data('focal')    || '-';
 
                             var exifData = '<table class="exif"><tr><td colspan="2"><span class="label">Camera</span><br>'+exifCamera+'</td></tr><tr><td><span class="label">ISO</span><br>'+exifISO+'</td><td><span class="label">Aperture</span><br>'+exifAperture+'</td></tr><tr><td><span class="label">Exposure</span><br>'+exifExposure+'</td><td><span class="label">Focal Length</span><br>'+exifFocal+'</td></tr></table><span class="arrow-down"></span>';
                         
