@@ -55,15 +55,20 @@
                 // create our rows
                 for (var i = 1; i <= rowCount; i++) {
 
-                    var pC;
-                    if( result[i-1] === undefined ) {
-                        pC = 0;
+                    var firstPhoto;
+                    if( i === 1 ) {
+                        // first row, start at zero
+                        firstPhoto = 0;
                     } else {
-                        pC = result[i-1][2];
+                        // after the first row, we find the previous row's last photo
+                        firstPhoto = rowArray[i-1][2];
                     }
 
+                    // now that we have our firstPhoto, we slice from it to the last photo in the row rowArray[i][2]
+                    // and we add a clas to each of those images with however many images are in that row, eg: count-2
+                    // and then we wrap them all in a div.row
                     $this.find(settings.photoWrap)
-                        .slice(pC,result[i][2]).addClass('count-' + result[i][1]).wrapAll('<div class="row clearit" />');
+                        .slice(firstPhoto,rowArray[i][2]).addClass('count-' + rowArray[i][1]).wrapAll('<div class="row clearit" />');
 
                 } // end create rows
 
