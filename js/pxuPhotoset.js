@@ -82,27 +82,18 @@
                 };
 
                 function findHeights(photoset) {
-                    photoset.find('.count-1 img').each(function() {
-                        var c1height = $(this).height();
-                        $(this).parents('.row').height(c1height);
+                    photoset.find('.row').each(function() {
+                        // check how many images are in this row
+                        var currentRow = $(this);
+                        var photoCount = currentRow.find(options.photoWrap).length;
+                        if( photoCount > 0 ) {
+                            var imageHeights = currentRow.find(options.photo+' img').map(function() {
+                                return $(this).height();
+                            }).get();
+                            var smallestHeight = Array.min(imageHeights);
+                            currentRow.height(smallestHeight).find(options.photo).height(smallestHeight);
+                        }
                     });
-
-                    // find the shortest image in rows that have two images
-                    var c2heights = photoset.find('.count-2 img').map(function() {
-                        return $(this).height();
-                    }).get();
-                    var c2min = Array.min(c2heights);
-
-                    // find the shortest image in rows that have three images
-                    var c3heights = photoset.find('.count-3 img').map(function() {
-                        return $(this).height();
-                    }).get();
-                    var c3min = Array.min(c3heights);
-
-                    photoset.find('.count-2').parents('.row').css({height: c2min});
-                    photoset.find('.count-2').children(options.photo).css({height: c2min});
-                    photoset.find('.count-3').parents('.row').css({height: c3min});
-                    photoset.find('.count-3').children(options.photo).css({height: c3min});
                 }
                 findHeights($this);
                 $(window).resize(function() {
