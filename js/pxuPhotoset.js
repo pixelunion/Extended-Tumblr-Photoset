@@ -201,12 +201,10 @@
                 // Round the corners on the top and bottom rows
                 if( settings.rounded == 'corners' ) {
 
-                    var
-                        rows = $this.find('.row'),
-                        numberOfRows = $this.find('.row').size(),
-                        lastRow = ($this.find('.row').size()) - 1;
+                    var rows = $this.find('.row');
 
-                    if( numberOfRows == 1 ) {
+                    if( rowCount == 1 ) {
+                        // only one row
                         rows.find(settings.photoWrap + ':first-child ' + settings.photo).css({
                             borderRadius: settings.borderRadius + ' 0 0 ' + settings.borderRadius
                         });
