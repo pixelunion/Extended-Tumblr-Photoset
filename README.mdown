@@ -16,6 +16,17 @@ Licensed under the MIT license
 * Enable high resolution images when your content is wider than 500px
 * Customizable options like rounded corners, bigger gutters, and more
 
+## Change Log
+
+**1.3.0**
+
+*   Updated to reflect changes in Tumblr's default photoset. Each row's height is now calculated independently, which should give users some flexibility in using portrait images.
+*   Removed the deprecated `live()` in favour for `on()`
+
+**1.2.0**
+
+* Fully responsive. You can now resize the window and the photoset will adjust accordingly.
+
 ## Installation
 
 Locate your current Tumblr Photoset code and replace it with the following:
