@@ -299,19 +299,19 @@
 
             // opacity change on icons
             $(options.photoWrap)
-            .live("mouseenter", function() { $(this).find('.icons').css("visibility", "visible"); } )
-            .live("mouseleave", function() { $(this).find('.icons').css("visibility", "hidden"); } );
+            .on("mouseenter", function() { $(this).find('.icons').css("visibility", "visible"); } )
+            .on("mouseleave", function() { $(this).find('.icons').css("visibility", "hidden"); } );
 
             // display photo info
             $("span.info")
-            .live("mouseenter", function() {
+            .on("mouseenter", function() {
                 var 
                     toggle = $(this)
                     exifData = toggle.children('.pxu-data');
                 exifData.css('display','block').stop(true, false).animate({opacity: 1}, 200);        
             });
             $("span.info")
-            .live("mouseleave", function() {
+            .on("mouseleave", function() {
                 var 
                     toggle = $(this)
                     exifData = toggle.children('.pxu-data');
