@@ -3,7 +3,7 @@
     PXU Photoset Extended
     --------------------------------
     + https://github.com/PixelUnion/Extended-Tumblr-Photoset
-    + Version 1.1.0
+    + Version 1.3.0
     + Copyright 2012 Pixel Union
     + Licensed under the MIT license    
 */
