@@ -1,6 +1,6 @@
 # PXU Photoset Extended
 
-Version. 1.2.0  
+Version. 1.3.0  
 Copyright 2012 Pixel Union  
 Licensed under the MIT license  
 
@@ -11,10 +11,22 @@ Licensed under the MIT license
 
 ## Features
 
-* **NEW in v1.2** - totally responsive! Load it up in your responsive Tumblr theme
+* Completely Responsive
 * Captions and EXIF data available in rollover tooltips
 * Enable high resolution images when your content is wider than 500px
 * Customizable options like rounded corners, bigger gutters, and more
+
+## Change Log
+
+**1.3.0**
+
+*   Updated to reflect changes in Tumblr's default photoset. Each row's height is now calculated independently, which should give users some flexibility in using portrait images.
+*   Removed the deprecated `live()` in favour for `on()`
+*   Went through entire JS with JSHint and fixed a bunch of non-fatal bugs
+
+**1.2.0**
+
+* Fully responsive. You can now resize the window and the photoset will adjust accordingly.
 
 ## Installation
 
@@ -26,7 +38,7 @@ Locate your current Tumblr Photoset code and replace it with the following:
             {block:Photos}
                 <div class="photo-data">
                     <div class="photo">
-                        <img alt="{PhotoAlt}" src="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" class="{block:Exif}exif-yes {/block:Exif}{block:Caption}caption-yes{/block:Caption}" {block:Exif}data-camera="{block:Camera}{Camera}{/block:Camera}" data-iso="{block:ISO}{ISO}{/block:ISO}" data-aperture="{block:Aperture}{Aperture}{/block:Aperture}" data-exposure="{block:Exposure}{Exposure}{/block:Exposure}" data-focal="{block:FocalLength}{FocalLength}{/block:FocalLength}"{/block:Exif} {block:Caption}data-caption="{Caption}"{/block:Caption}>
+                        <img alt="{PhotoAlt}" src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" data-highres="{PhotoURL-HighRes}" class="{block:Exif}exif-yes {/block:Exif}{block:Caption}caption-yes{/block:Caption}" {block:Exif}data-camera="{block:Camera}{Camera}{/block:Camera}" data-iso="{block:ISO}{ISO}{/block:ISO}" data-aperture="{block:Aperture}{Aperture}{/block:Aperture}" data-exposure="{block:Exposure}{Exposure}{/block:Exposure}" data-focal="{block:FocalLength}{FocalLength}{/block:FocalLength}"{/block:Exif} {block:Caption}data-caption="{Caption}"{/block:Caption}>
                     </div>
                     <div class="icons">
                         <a class="view" rel="post-{PostID}" href="{PhotoURL-HighRes}"><span class="zoom">Zoom</span></a>
