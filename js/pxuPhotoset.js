@@ -21,7 +21,7 @@
             'gutter'         : '10px',
             'photoset'       : '.photo-slideshow',
             'photoWrap'      : '.photo-data',
-            'photo'          : '.photo'
+            'photo'          : '.pxu-photo'
         };
 
         var settings = $.extend(defaults, options);

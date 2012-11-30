@@ -37,7 +37,7 @@ Locate your current Tumblr Photoset code and replace it with the following:
 
             {block:Photos}
                 <div class="photo-data">
-                    <div class="photo">
+                    <div class="pxu-photo">
                         <img alt="{PhotoAlt}" src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" data-highres="{PhotoURL-HighRes}" class="{block:Exif}exif-yes {/block:Exif}{block:Caption}caption-yes{/block:Caption}" {block:Exif}data-camera="{block:Camera}{Camera}{/block:Camera}" data-iso="{block:ISO}{ISO}{/block:ISO}" data-aperture="{block:Aperture}{Aperture}{/block:Aperture}" data-exposure="{block:Exposure}{Exposure}{/block:Exposure}" data-focal="{block:FocalLength}{FocalLength}{/block:FocalLength}"{/block:Exif} {block:Caption}data-caption="{Caption}"{/block:Caption}>
                     </div>
                     <div class="icons">
@@ -77,7 +77,7 @@ In the Custom CSS box, add the styles from <a href="https://github.com/PixelUnio
 		'gutter'    : '10px', // spacing between the images
 		'photoset'  : '.photo-slideshow', // photoset wrapper
 		'photoWrap' : '.photo-data', // photo data wrapper (includes photo, icons + exif)
-		'photo'     : '.photo' // photo wrap (includes photo only)
+		'photo'     : '.pxu-photo' // photo wrap (includes photo only)
 	});
 
 ## Callback
