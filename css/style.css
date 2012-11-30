@@ -18,9 +18,10 @@
   float: left;
   margin-bottom: 0;
   width: 100%;
+  overflow: hidden;
 }
 
-.photo-slideshow .photo img {
+.photo-slideshow .pxu-photo img {
   width: 100%;
   height: auto;
 }
@@ -62,10 +63,6 @@
 .photo-data {
   position: relative;
   float: left;
-}
-
-.photo {
-  overflow: hidden;
 }
 
 .icons {
