@@ -13,7 +13,7 @@
   width: 100%;
 }
 
-.photo-slideshow .photo {
+.photo-slideshow .pxu-photo {
   display: block;
   float: left;
   margin-bottom: 0;
@@ -26,7 +26,7 @@
   height: auto;
 }
 
-.photo-slideshow .photo:first-child img {
+.photo-slideshow .pxu-photo:first-child img {
   margin-left: 0;
 }
 
