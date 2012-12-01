@@ -14,6 +14,7 @@
     $.fn.pxuPhotoset = function( options, callback ) {
 
         var defaults = {
+            'lightbox'       : true,
             'highRes'        : true,
             'rounded'        : 'corners',
             'borderRadius'   : '5px',
