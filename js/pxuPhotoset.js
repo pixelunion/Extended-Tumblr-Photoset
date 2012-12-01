@@ -28,6 +28,27 @@
 
         var settings = $.extend(defaults, options);
 
+        // opacity change on icons
+        $(settings.photoWrap)
+            .on("mouseenter", function() { $(this).find('.icons').css("visibility", "visible"); } )
+            .on("mouseleave", function() { $(this).find('.icons').css("visibility", "hidden"); } );
+
+        // display photo info
+        $("span.info")
+            .on("mouseenter", function() {
+                var toggle = $(this);
+                var exifData = toggle.children('.pxu-data');
+                exifData.css('display','block').stop(true, false).animate({opacity: 1}, 200);        
+            });
+        $("span.info")
+            .on("mouseleave", function() {
+                var toggle = $(this);
+                var exifData = toggle.children('.pxu-data');
+                exifData.stop(true, false).animate({opacity: 0}, 200, function() {
+                    $(this).css('display','none');
+                });        
+            });
+
         return this.each(function() {
             var $this = $(this);
 
@@ -294,27 +315,6 @@
                 }
 
             }); // end imagesLoaded
-
-            // opacity change on icons
-            $(settings.photoWrap)
-            .on("mouseenter", function() { $(this).find('.icons').css("visibility", "visible"); } )
-            .on("mouseleave", function() { $(this).find('.icons').css("visibility", "hidden"); } );
-
-            // display photo info
-            $("span.info")
-            .on("mouseenter", function() {
-                var toggle = $(this);
-                var exifData = toggle.children('.pxu-data');
-                exifData.css('display','block').stop(true, false).animate({opacity: 1}, 200);        
-            });
-            $("span.info")
-            .on("mouseleave", function() {
-                var toggle = $(this);
-                var exifData = toggle.children('.pxu-data');
-                exifData.stop(true, false).animate({opacity: 0}, 200, function() {
-                    $(this).css('display','none');
-                });        
-            });
 
         }); // end return each
     
