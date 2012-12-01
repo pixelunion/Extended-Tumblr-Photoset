@@ -54,6 +54,7 @@
                     var imageLowRes = thisImage.attr('src');
                     var imageHighRes = thisImage.data('highres');
 
+                    // formatting is specific to how Tumblr has things set up
                     var thisPhotoPackage = {"width":imageWidth,"height":imageHeight,"low_res":imageLowRes,"high_res":imageHighRes};
                     photosetArray.push(thisPhotoPackage);
                 });
