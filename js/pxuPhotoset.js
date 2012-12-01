@@ -35,6 +35,14 @@
                 var layout = JSON.stringify(getLayout).split('');
                 var rowCount = layout.length;
 
+                // add a count number to each image so that we now where
+                // to start the lightbox when we init
+                var allImages = $this.find(settings.photo+' img');
+                for(i = 0; i < allImages.length; i++) {
+                    var image = allImages.eq(i);
+                    image.attr('data-count',i+1);
+                }
+
                 // here we are going to combine rows, image count per row, 
                 // and the last image number in each row (of total images)
                 var rowArray=[];
