@@ -28,6 +28,41 @@
 
         var settings = $.extend(defaults, options);
 
+        if( settings.lightbox ) {
+            // init Tumblr Lightbox
+            $('.tumblr-box').on('click', function (e) {
+                e.preventDefault();
+
+                var clicked = $(this);
+                var photoSlideshow = clicked.parents(settings.photoset).attr('id');
+                tumblrLightbox(clicked, photoSlideshow);
+
+            });
+
+            var tumblrLightbox = function (current,photoset) {
+
+                // figure out which image was clicked
+                // we'll make sure that's where we start our lightbox
+                var openWith = current.parents(settings.photoWrap).find(settings.photo+' img').data('count');
+
+                // setup array of images
+                var photosetArray = [];
+                $('#'+photoset).find(settings.photoWrap).each(function () {
+                    var thisImage = $(this).find(settings.photo+' img');
+                    var imageWidth = thisImage.data('width');
+                    var imageHeight = thisImage.data('height');
+                    var imageLowRes = thisImage.attr('src');
+                    var imageHighRes = thisImage.data('highres');
+
+                    var thisPhotoPackage = {"width":imageWidth,"height":imageHeight,"low_res":imageLowRes,"high_res":imageHighRes};
+                    photosetArray.push(thisPhotoPackage);
+                });
+
+                Tumblr.Lightbox.init(photosetArray, openWith);
+
+            }; // end tumblrLightbox()
+        }
+
         // opacity change on icons
         $(settings.photoWrap)
             .on("mouseenter", function() { $(this).find('.icons').css("visibility", "visible"); } )
