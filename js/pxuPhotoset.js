@@ -3,6 +3,7 @@
     PXU Photoset Extended
     --------------------------------
     + https://github.com/PixelUnion/Extended-Tumblr-Photoset
+    + http://pixelunion.net
     + Version 1.3.0
     + Copyright 2012 Pixel Union
     + Licensed under the MIT license    
@@ -13,6 +14,7 @@
     $.fn.pxuPhotoset = function( options, callback ) {
 
         var defaults = {
+            'lightbox'       : true,
             'highRes'        : true,
             'rounded'        : 'corners',
             'borderRadius'   : '5px',
@@ -26,6 +28,63 @@
 
         var settings = $.extend(defaults, options);
 
+        if( settings.lightbox ) {
+            // init Tumblr Lightbox
+            $('.tumblr-box').on('click', function (e) {
+                e.preventDefault();
+
+                var clicked = $(this);
+                var photoSlideshow = clicked.parents(settings.photoset).attr('id');
+                tumblrLightbox(clicked, photoSlideshow);
+
+            });
+
+            var tumblrLightbox = function (current,photoset) {
+
+                // figure out which image was clicked
+                // we'll make sure that's where we start our lightbox
+                var openWith = current.parents(settings.photoWrap).find(settings.photo+' img').data('count');
+
+                // setup array of images
+                var photosetArray = [];
+                $('#'+photoset).find(settings.photoWrap).each(function () {
+                    var thisImage = $(this).find(settings.photo+' img');
+                    var imageWidth = thisImage.data('width');
+                    var imageHeight = thisImage.data('height');
+                    var imageLowRes = thisImage.attr('src');
+                    var imageHighRes = thisImage.data('highres');
+
+                    // formatting is specific to how Tumblr has things set up
+                    var thisPhotoPackage = {"width":imageWidth,"height":imageHeight,"low_res":imageLowRes,"high_res":imageHighRes};
+                    photosetArray.push(thisPhotoPackage);
+                });
+
+                Tumblr.Lightbox.init(photosetArray, openWith);
+
+            }; // end tumblrLightbox()
+        }
+
+        // opacity change on icons
+        $(settings.photoWrap)
+            .on("mouseenter", function() { $(this).find('.icons').css("visibility", "visible"); } )
+            .on("mouseleave", function() { $(this).find('.icons').css("visibility", "hidden"); } );
+
+        // display photo info
+        $("span.info")
+            .on("mouseenter", function() {
+                var toggle = $(this);
+                var exifData = toggle.children('.pxu-data');
+                exifData.css('display','block').stop(true, false).animate({opacity: 1}, 200);        
+            });
+        $("span.info")
+            .on("mouseleave", function() {
+                var toggle = $(this);
+                var exifData = toggle.children('.pxu-data');
+                exifData.stop(true, false).animate({opacity: 0}, 200, function() {
+                    $(this).css('display','none');
+                });        
+            });
+
         return this.each(function() {
             var $this = $(this);
 
@@ -34,6 +93,14 @@
                 var getLayout = $this.data('layout');
                 var layout = JSON.stringify(getLayout).split('');
                 var rowCount = layout.length;
+
+                // add a count number to each image so that we now where
+                // to start the lightbox when we init
+                var allImages = $this.find(settings.photo+' img');
+                for(i = 0; i < allImages.length; i++) {
+                    var image = allImages.eq(i);
+                    image.attr('data-count',i+1);
+                }
 
                 // here we are going to combine rows, image count per row, 
                 // and the last image number in each row (of total images)
@@ -284,27 +351,6 @@
                 }
 
             }); // end imagesLoaded
-
-            // opacity change on icons
-            $(settings.photoWrap)
-            .on("mouseenter", function() { $(this).find('.icons').css("visibility", "visible"); } )
-            .on("mouseleave", function() { $(this).find('.icons').css("visibility", "hidden"); } );
-
-            // display photo info
-            $("span.info")
-            .on("mouseenter", function() {
-                var toggle = $(this);
-                var exifData = toggle.children('.pxu-data');
-                exifData.css('display','block').stop(true, false).animate({opacity: 1}, 200);        
-            });
-            $("span.info")
-            .on("mouseleave", function() {
-                var toggle = $(this);
-                var exifData = toggle.children('.pxu-data');
-                exifData.stop(true, false).animate({opacity: 0}, 200, function() {
-                    $(this).css('display','none');
-                });        
-            });
 
         }); // end return each
     
