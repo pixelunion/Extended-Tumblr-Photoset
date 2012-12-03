@@ -1,6 +1,6 @@
 # PXU Photoset Extended
 
-Version. 1.3.0  
+Version. 1.4.0  
 Copyright 2012 Pixel Union  
 Licensed under the MIT license  
 
@@ -17,6 +17,10 @@ Licensed under the MIT license
 * Customizable options like rounded corners, bigger gutters, and more
 
 ## Change Log
+
+**1.4.0**
+
+*   Now using Tumblr's built-in Lightbox. No longer requires the user to specificy and include a separate lightbox. If you do want to use your own, simply change the `lightbox` setting to `false`.
 
 **1.3.0**
 
