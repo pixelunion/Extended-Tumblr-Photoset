@@ -4,9 +4,9 @@
     --------------------------------
     + https://github.com/PixelUnion/Extended-Tumblr-Photoset
     + http://pixelunion.net
-    + Version 1.4.0
+    + Version 1.5.0
     + Copyright 2012 Pixel Union
-    + Licensed under the MIT license    
+    + Licensed under the MIT license
 */
 
 (function( $ ){
@@ -74,7 +74,7 @@
             .on("mouseenter", function() {
                 var toggle = $(this);
                 var exifData = toggle.children('.pxu-data');
-                exifData.css('display','block').stop(true, false).animate({opacity: 1}, 200);        
+                exifData.css('display','block').stop(true, false).animate({opacity: 1}, 200);
             });
         $("span.info")
             .on("mouseleave", function() {
@@ -82,14 +82,14 @@
                 var exifData = toggle.children('.pxu-data');
                 exifData.stop(true, false).animate({opacity: 0}, 200, function() {
                     $(this).css('display','none');
-                });        
+                });
             });
 
         return this.each(function() {
             var $this = $(this);
 
             $this.imagesLoaded(function() {
-            
+
                 var getLayout = $this.data('layout');
                 var layout = JSON.stringify(getLayout).split('');
                 var rowCount = layout.length;
@@ -102,7 +102,7 @@
                     image.attr('data-count',i+1);
                 }
 
-                // here we are going to combine rows, image count per row, 
+                // here we are going to combine rows, image count per row,
                 // and the last image number in each row (of total images)
                 var rowArray=[];
                 for (i = 1; i <= rowCount; ++i) {
@@ -113,7 +113,7 @@
                         var increment = parseInt(layout[p],10);
                         lastImageInRow += increment;
                     }
-                    
+
                     var rowImageCount = parseInt(layout[i-1],10);
                     // rowArray = (row number, images in row, last image in row)
                     rowArray[i] = Array(i, rowImageCount, lastImageInRow);
@@ -160,6 +160,19 @@
                             var smallestHeight = Array.min(imageHeights);
                             currentRow.height(smallestHeight).find(settings.photo).height(smallestHeight);
                         }
+
+                        // Center crop images
+                        var imagesInRow = currentRow.find(settings.photo+' img').length;
+                        for( i=0; i < imagesInRow; i++ ) {
+                            var image = currentRow.find(settings.photo+' img').eq(i);
+                            var thisHeight = image.height();
+                            var rowHeight  = smallestHeight;
+
+                            if( thisHeight > rowHeight ) {
+                                var heightDifference = (thisHeight-rowHeight)/2;
+                                image.css('margin-top',-heightDifference);
+                            }
+                        }
                     });
                 }
                 findHeights($this);
@@ -171,7 +184,7 @@
                 // EXIF data and CAPTIONS enabled
                 if( settings.exif && settings.captions ) {
 
-                    $this.find(settings.photoWrap).each(function() { 
+                    $this.find(settings.photoWrap).each(function() {
 
                         var
                             thisImage = $(this).find('img');
@@ -201,19 +214,19 @@
                         }
 
                         if( pxuCaption !== '' || exifData !== '' ) {
-                            $(this).find('.info').append('<div class="pxu-data">'+pxuCaption+exifData+'<span class="arrow-down"></span></div>'); 
+                            $(this).find('.info').append('<div class="pxu-data">'+pxuCaption+exifData+'<span class="arrow-down"></span></div>');
 
                             if( exifData === '' ) {
                                 $(this).find('.pxu-data').addClass('caption-only');
-                            }           
+                            }
 
                             $(this).find('span.info').css('display','block');
                         }
-                        
+
                     });
 
                 }
-                
+
                 // Roll through EXIF data ONLY
                 else if( settings.exif ) {
 
@@ -230,12 +243,12 @@
                             var exifFocal    = thisImage.data('focal')    || '-';
 
                             var exifData = '<table class="exif"><tr><td colspan="2"><span class="label">Camera</span><br>'+exifCamera+'</td></tr><tr><td><span class="label">ISO</span><br>'+exifISO+'</td><td><span class="label">Aperture</span><br>'+exifAperture+'</td></tr><tr><td><span class="label">Exposure</span><br>'+exifExposure+'</td><td><span class="label">Focal Length</span><br>'+exifFocal+'</td></tr></table><span class="arrow-down"></span>';
-                        
-                            $(this).find('.info').append('<div class="pxu-data">'+exifData+'</div>');            
+
+                            $(this).find('.info').append('<div class="pxu-data">'+exifData+'</div>');
 
                             $(this).find('span.info').css('display','block');
-                        }            
-                 
+                        }
+
                     });
 
                 } // end EXIF
@@ -250,12 +263,12 @@
                             var getCaption = thisImage.data('caption');
                             var pxuCaption = '<p class="pxu-caption" style="margin:0;">'+getCaption+'</p>';
 
-                            $(this).find('.info').append('<div class="pxu-data caption-only">'+pxuCaption+'<span class="arrow-down"></span></div>');            
+                            $(this).find('.info').append('<div class="pxu-data caption-only">'+pxuCaption+'<span class="arrow-down"></span></div>');
 
                             $(this).find('span.info').css('display','block');
 
                         }
-                        
+
                     });
 
                 } // end CAPTIONS
@@ -301,7 +314,7 @@
                                     rows.eq(row).find(settings.photoWrap + ':last-child ' + settings.photo).css({
                                         borderRadius: '0 '+settings.borderRadius +' 0 0'
                                     });
-                                } 
+                                }
                             }
 
                             if( row == rowCount-1) {
@@ -324,21 +337,21 @@
                         } // end for loop
 
                     } // end else
-                
+
                 } // end ROUNDED
 
                 // Round the corners on the top and bottom rows
                 if( settings.rounded == 'all' ) {
 
                     $this.find(settings.photo).css({ borderRadius: settings.borderRadius });
-                
+
                 } // end ROUNDED
 
                 // Round the corners on the top and bottom rows
                 if( !settings.rounded ) {
 
                     $this.find(settings.photo).css({ borderRadius: 0 });
-                
+
                 } // end ROUNDED
 
                 // We're done! Add a 'processed' class so people can tie other processes into it
@@ -353,7 +366,7 @@
             }); // end imagesLoaded
 
         }); // end return each
-    
+
     }; // end PXU Photoset Extended
 
 })( jQuery );
