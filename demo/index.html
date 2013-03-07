@@ -1,0 +1,114 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+<!--
+==========================================================================
+ ____                     ___       __  __
+/\  _`\  __              /\_ \     /\ \/\ \          __
+\ \ \L\ \\_\  __  _    __\//\ \    \ \ \ \ \    ___ /\_\    ___    ___
+ \ \ ,__//\ \/\ \/'\ /'__`\\ \ \    \ \ \ \ \ /' _ `\/\ \  / __`\/' _ `\
+  \ \ \/ \ \ \/>  <//\  __/ \_\ \_   \ \ \_\ \/\ \/\ \ \ \/\ \L\ \\ \/\ \
+   \ \_\  \ \_\\_/\_\ \____\/\____\   \ \_____\ \_\ \_\ \_\ \____/ \_\ \_\
+    \/_/   \/_///\/_/\/____/\/____/    \/_____/\/_/\/_/\/_/\/___/ \/_/\/_/
+==========================================================================
+Demo Theme
+PXU Photoset Extended
+Tumblr: http://tumblr.com/themes/by/pixelunion
+Website: http://www.pixelunion.net
+Support: support@pixelunion.net
+==========================================================================
+-->
+    <title>Extended Photoset by Pixel Union Labs</title>
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+    {block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+    <link href='http://fonts.googleapis.com/css?family=Cutive' rel='stylesheet' type='text/css'>
+
+    <link href="http://pxu-photoset.dev/demo/css/demo-theme.css" rel="stylesheet" type="text/css">
+    <link href="http://pxu-photoset.dev/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div id="header-wrap">
+    <header id="header" class="container">
+      <h1 id="title">Pixel Union Labs</h1>
+
+      <p>At Pixel Union we are constantly pushing the limits of Tumblr. We make awesome themes and sometimes we need to create things from scratch to make sure our users get the best possible experience.</p>
+
+      <p>Occasionally these experiments lead us into unknown territory. Some of them get scrapped, and others make their way into our themes. Yadda yadda.</p>
+
+    </header>
+  </div>
+
+  <div id="banner-wrap">
+    <section id="banner" class="container">
+      <h2 id="description">Tumblr's Photoset Enhanced to Meet Today's User Standards</h2>
+
+      <p>We knew that users loved selecting a layout for their photoset built right into the Tumblr backend but we found it to be limiting in both functionality and, well, fun.</p>
+
+      <p>So we put on our thinking caps and set out to recreate and improve one of Tumblr's coolest features. Enter Pixel Union Photoset Extended:</p>
+
+      <ul>
+        <li>Captions and EXIF data tooltip</li>
+        <li>Enable high resolution images for photosets greater than 500px wide</li>
+        <li>Customizable options like rounded corners, bigger gutters, and more</li>
+      </ul>
+    </section>
+  </div>
+
+
+  <div id="posts-wrap">
+    <section id="posts" class="container">
+      {block:Posts}
+      <article>
+
+        {block:Photoset}
+
+        <div class="photo-slideshow" id="photoset_{PostID}" data-layout="{PhotosetLayout}">
+
+          {block:Photos}
+            <div class="photo-data">
+              <div class="pxu-photo">
+                <img alt="{PhotoAlt}" src="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" class="{block:Exif}exif-yes {/block:Exif}{block:Caption}caption-yes{/block:Caption}" {block:Exif}data-camera="{block:Camera}{Camera}{/block:Camera}" data-iso="{block:ISO}{ISO}{/block:ISO}" data-aperture="{block:Aperture}{Aperture}{/block:Aperture}" data-exposure="{block:Exposure}{Exposure}{/block:Exposure}" data-focal="{block:FocalLength}{FocalLength}{/block:FocalLength}"{/block:Exif} {block:Caption}data-caption="{Caption}"{/block:Caption}>
+              </div>
+              <div class="icons">
+                <a class="tumblr-box" rel="post-{PostID}" href="{PhotoURL-HighRes}">
+                  <span class="zoom">Zoom</span>
+                </a>
+                <span class="info">Info</span>
+              </div>
+            </div>
+          {/block:Photos}
+
+        </div><!-- close SLIDESHOW -->
+
+        {block:Caption}{Caption}{/block:Caption}
+
+        {/block:Photoset}
+      </article>
+      {/block:Posts}
+    </section>
+  </div>
+
+  <footer id="footer">
+
+  </footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://static.tumblr.com/hugxd2w/mrEmjb1l2/jquery.1.9.1.min.js><\/script>')</script>
+<script src="http://static.tumblr.com/hugxd2w/5ixmbp81y/plugins.js"></script>
+<script src="http://pxu-photoset.dev/js/pxuPhotoset.js"></script>
+<script>
+$(document).ready(function() {
+    $('.photo-slideshow').pxuPhotoset({
+        // options
+    }, function() {
+        // callback
+    });
+});
+</script>
+</body>
+</html>
