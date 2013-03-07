@@ -160,6 +160,19 @@
                             var smallestHeight = Array.min(imageHeights);
                             currentRow.height(smallestHeight).find(settings.photo).height(smallestHeight);
                         }
+
+                        // Center crop images
+                        var imagesInRow = currentRow.find(settings.photo+' img').length;
+                        for( i=0; i < imagesInRow; i++ ) {
+                            var image = currentRow.find(settings.photo+' img').eq(i);
+                            var thisHeight = image.height();
+                            var rowHeight  = smallestHeight;
+
+                            if( thisHeight > rowHeight ) {
+                                var heightDifference = (thisHeight-rowHeight)/2;
+                                image.css('margin-top',-heightDifference);
+                            }
+                        }
                     });
                 }
                 findHeights($this);
