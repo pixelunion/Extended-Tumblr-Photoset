@@ -1,7 +1,7 @@
 # PXU Photoset Extended
 
-Version. 1.4.0  
-Copyright 2012 Pixel Union  
+Version. 1.5.0  
+Copyright 2013 Pixel Union  
 Licensed under the MIT license  
 
 ## Requirements
@@ -17,6 +17,10 @@ Licensed under the MIT license
 * Customizable options like rounded corners, bigger gutters, and more
 
 ## Change Log
+
+**1.5.0**
+
+*   Updated how images get cropped when there is more than one image in a row. Images are now cropped from the center instead of the top to better match Tumblr.
 
 **1.4.0**
 
