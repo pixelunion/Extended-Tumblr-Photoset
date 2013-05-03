@@ -1,6 +1,6 @@
 # PXU Photoset Extended
 
-Version. 1.5.0  
+Version. 1.6.0  
 Copyright 2013 Pixel Union  
 Licensed under the MIT license  
 
