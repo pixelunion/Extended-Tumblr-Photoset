@@ -88,8 +88,6 @@
         return this.each(function() {
             var $this = $(this);
 
-            $this.imagesLoaded(function() {
-
                 var getLayout = $this.data('layout');
                 var layout = JSON.stringify(getLayout).split('');
                 var rowCount = layout.length;
@@ -362,8 +360,6 @@
                 if (typeof callback == 'function') { // make sure the callback is a function
                         callback.call(this);
                 }
-
-            }); // end imagesLoaded
 
         }); // end return each
 
