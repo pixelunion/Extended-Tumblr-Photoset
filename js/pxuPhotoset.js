@@ -182,18 +182,18 @@
 
                         // center crop the images that are too tall for the row
                         for( i=0; i < photoCount; i++ ) {
-                            var thisPhoto   = images.eq(i);
-                            var photoHeight = thisPhoto.data('new-height');
+                            var thisImage   = images.eq(i);
+                            var photoHeight = thisImage.data('new-height');
                             var rowHeight   = smallestHeight;
 
                             if( photoHeight > rowHeight ) {
                                 var heightDifference = (photoHeight-rowHeight)/2;
-                                thisPhoto.css('margin-top',-heightDifference);
+                                thisImage.css('margin-top',-heightDifference);
                             }
                         }
                     }
                 }
-            };
+            }
             findHeights($this);
             $(window).resize(function() {
                 findHeights($this);
