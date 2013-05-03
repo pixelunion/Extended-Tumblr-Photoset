@@ -39,11 +39,7 @@
 }
 
 .photo-slideshow .count-3 {
-  width: 33.3%;
-}
-
-.photo-slideshow .count-3:first-child {
-  width: 33.4%;
+  width: 33.33%;
 }
 
 .photo-slideshow .count-4 {
