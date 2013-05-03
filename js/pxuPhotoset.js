@@ -55,7 +55,12 @@
                     var imageHighRes = thisImage.data('highres');
 
                     // formatting is specific to how Tumblr has things set up
-                    var thisPhotoPackage = {"width":imageWidth,"height":imageHeight,"low_res":imageLowRes,"high_res":imageHighRes};
+                    var thisPhotoPackage = {
+                        width    : imageWidth,
+                        height   : imageHeight,
+                        low_res  : imageLowRes,
+                        high_res : imageHighRes
+                    };
                     photosetArray.push(thisPhotoPackage);
                 });
 
@@ -105,7 +110,7 @@
             var rowArray=[];
             for (i = 1; i <= rowCount; ++i) {
 
-                // incremently add images so that we can split() them and make the rows
+                // incrementally add images so that we can split() them and make the rows
                 var lastImageInRow = 0;
                 for(var p = 0; p < i; ++p ) {
                     var increment = parseInt(layout[p],10);
@@ -205,14 +210,12 @@
 
                 $this.find(settings.photoWrap).each(function() {
 
-                    var
-                        thisImage = $(this).find('img');
+                    var thisImage = $(this).find('img');
 
                     var exifData;
                     var pxuCaption;
 
                     if( thisImage.hasClass('exif-yes') ) {
-                        // exif data avialable
 
                         var exifCamera   = thisImage.data('camera')   || '-';
                         var exifISO      = thisImage.data('iso')      || '-';
