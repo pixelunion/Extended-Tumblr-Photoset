@@ -147,32 +147,53 @@
             };
 
             function findHeights(photoset) {
-                photoset.find('.row').each(function() {
-                    // check how many images are in this row
-                    var currentRow = $(this);
-                    var photoCount = currentRow.find(settings.photoWrap).length;
-                    if( photoCount > 0 ) {
+
+                var rows     = photoset.find('.row');
+                var rowCount = rows.length;
+
+                var thisPhoto;
+                var naturalWidth;
+                var naturalHeight;
+                var newWidth;
+                var newHeight;
+
+                for( var row = 0; row < rowCount; row++ ) {
+
+                    currentRow = rows.eq(row);
+                    images     = currentRow.find(settings.photoWrap+' img');
+                    photoCount = images.length;
+
+                    if( photoCount > 1 ) {
+
+                        // find smallest value
                         var imageHeights = currentRow.find(settings.photo+' img').map(function() {
-                            return $(this).height();
+                            thisPhoto     = $(this);
+                            naturalWidth  = thisPhoto.data('width');
+                            naturalHeight = thisPhoto.data('height');
+                            newWidth      = thisPhoto.parent().width();
+                            newHeight     = (newWidth/naturalWidth)*naturalHeight;
+
+                            thisPhoto.data('new-height',newHeight);
+
+                            return newHeight;
                         }).get();
                         var smallestHeight = Array.min(imageHeights);
                         currentRow.height(smallestHeight).find(settings.photo).height(smallestHeight);
-                    }
 
-                    // Center crop images
-                    var imagesInRow = currentRow.find(settings.photo+' img').length;
-                    for( i=0; i < imagesInRow; i++ ) {
-                        var image = currentRow.find(settings.photo+' img').eq(i);
-                        var thisHeight = image.height();
-                        var rowHeight  = smallestHeight;
+                        // center crop the images that are too tall for the row
+                        for( i=0; i < photoCount; i++ ) {
+                            var thisPhoto   = images.eq(i);
+                            var photoHeight = thisPhoto.data('new-height');
+                            var rowHeight   = smallestHeight;
 
-                        if( thisHeight > rowHeight ) {
-                            var heightDifference = (thisHeight-rowHeight)/2;
-                            image.css('margin-top',-heightDifference);
+                            if( photoHeight > rowHeight ) {
+                                var heightDifference = (photoHeight-rowHeight)/2;
+                                thisPhoto.css('margin-top',-heightDifference);
+                            }
                         }
                     }
-                });
-            }
+                }
+            };
             findHeights($this);
             $(window).resize(function() {
                 findHeights($this);
