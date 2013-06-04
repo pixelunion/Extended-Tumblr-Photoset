@@ -1,13 +1,12 @@
 # PXU Photoset Extended
 
-Version. 1.5.0  
+Version. 1.6.0  
 Copyright 2013 Pixel Union  
 Licensed under the MIT license  
 
 ## Requirements
 
 * jQuery v1.7.0 http://jquery.com/
-* imagesLoaded jQuery Plugin https://github.com/desandro/imagesloaded
 
 ## Features
 
@@ -17,6 +16,11 @@ Licensed under the MIT license
 * Customizable options like rounded corners, bigger gutters, and more
 
 ## Change Log
+
+**1.6.0**
+
+*   Removed the need to include imagesLoaded.
+*   Minor bug fixes.
 
 **1.5.0**
 
