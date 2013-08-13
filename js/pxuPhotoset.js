@@ -4,8 +4,8 @@
     --------------------------------
     + https://github.com/PixelUnion/Extended-Tumblr-Photoset
     + http://pixelunion.net
-    + Version 1.6.0
-    + Copyright 2012 Pixel Union
+    + Version 1.7.0
+    + Copyright 2013 Pixel Union
     + Licensed under the MIT license
 */
 
@@ -298,7 +298,7 @@
             // Roll through HighRes data and replace the images
             if( settings.highRes ) {
                 $this.find(settings.photoWrap).each(function() {
-                    var thisImage = $(this).find('.photo img');
+                    var thisImage = $(this).find(settings.photo + " img");
                     var bigOne    = thisImage.data('highres');
 
                     thisImage.attr('src', bigOne);
