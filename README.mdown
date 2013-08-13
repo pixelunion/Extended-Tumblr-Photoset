@@ -1,6 +1,6 @@
 # PXU Photoset Extended
 
-Version. 1.6.0  
+Version. 1.7.0  
 Copyright 2013 Pixel Union  
 Licensed under the MIT license  
 
@@ -16,6 +16,10 @@ Licensed under the MIT license
 * Customizable options like rounded corners, bigger gutters, and more
 
 ## Change Log
+
+**1.7.0**
+
+*   Fixed a bug which broke the "highRes" plugin option.
 
 **1.6.0**
 
