@@ -185,7 +185,7 @@
                             return newHeight;
                         }).get();
                         var smallestHeight = Array.min(imageHeights);
-                        currentRow.height(smallestHeight).find(settings.photo).height(smallestHeight);
+                        currentRow.height(smallestHeight - 1).find(settings.photo).height(smallestHeight - 1);
 
                         // center crop the images that are too tall for the row
                         for( i=0; i < photoCount; i++ ) {
