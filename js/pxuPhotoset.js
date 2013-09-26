@@ -143,8 +143,10 @@
             } // end create rows
 
             // apply gutter
-            $(this).find('.row').css('margin-bottom',settings.gutter);
-            $(this).find(settings.photoWrap+':not(:first-child) ' + settings.photo + ' img').css('margin-left', settings.gutter);
+            if( settings.gutter ) {
+                $(this).find('.row').css('margin-bottom',settings.gutter);
+                $(this).find(settings.photoWrap+':not(:first-child) ' + settings.photo + ' img').css('margin-left', settings.gutter);
+            }
 
             // our function to find the minimum value
             Array.min = function( array ){
@@ -183,7 +185,7 @@
                             return newHeight;
                         }).get();
                         var smallestHeight = Array.min(imageHeights);
-                        currentRow.height(smallestHeight).find(settings.photo).height(smallestHeight);
+                        currentRow.height(smallestHeight - 1).find(settings.photo).height(smallestHeight - 1);
 
                         // center crop the images that are too tall for the row
                         for( i=0; i < photoCount; i++ ) {
