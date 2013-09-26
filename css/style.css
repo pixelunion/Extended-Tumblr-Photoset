@@ -8,6 +8,14 @@
 
 /* Photoset */
 
+.photo-slideshow {
+  visibility: hidden;
+}
+
+.photo-slideshow.processed {
+  visibility: visible;
+}
+
 .photo-slideshow .row {
   clear: both;
   width: 100%;
@@ -22,6 +30,10 @@
 }
 
 .photo-slideshow .pxu-photo img {
+  display: block;
+}
+
+.photo-slideshow.processed .pxu-photo img {
   width: 100%;
   height: auto;
 }
