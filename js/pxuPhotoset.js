@@ -170,7 +170,7 @@
                     images     = currentRow.find(settings.photoWrap+' img');
                     photoCount = images.length;
 
-                    if( photoCount > 1 ) {
+                    if( photoCount >= 1 ) {
 
                         // find smallest value
                         var imageHeights = currentRow.find(settings.photo+' img').map(function() {
