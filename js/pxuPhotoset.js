@@ -4,7 +4,7 @@
     --------------------------------
     + https://github.com/PixelUnion/Extended-Tumblr-Photoset
     + http://pixelunion.net
-    + Version 1.7.0
+    + Version 1.8.0
     + Copyright 2013 Pixel Union
     + Licensed under the MIT license
 */
