@@ -143,8 +143,10 @@
             } // end create rows
 
             // apply gutter
-            $(this).find('.row').css('margin-bottom',settings.gutter);
-            $(this).find(settings.photoWrap+':not(:first-child) ' + settings.photo + ' img').css('margin-left', settings.gutter);
+            if(settings.gutter) {
+                $(this).find('.row').css('margin-bottom',settings.gutter);
+                $(this).find(settings.photoWrap+':not(:first-child) ' + settings.photo + ' img').css('margin-left', settings.gutter);
+            }
 
             // our function to find the minimum value
             Array.min = function( array ){
