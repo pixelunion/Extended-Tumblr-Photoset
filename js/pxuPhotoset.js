@@ -143,7 +143,7 @@
             } // end create rows
 
             // apply gutter
-            if(settings.gutter) {
+            if( settings.gutter ) {
                 $(this).find('.row').css('margin-bottom',settings.gutter);
                 $(this).find(settings.photoWrap+':not(:first-child) ' + settings.photo + ' img').css('margin-left', settings.gutter);
             }
