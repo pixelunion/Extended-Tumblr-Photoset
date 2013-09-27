@@ -168,35 +168,31 @@
 
                     currentRow = rows.eq(row);
                     images     = currentRow.find(settings.photoWrap+' img');
-                    photoCount = images.length;
 
-                    if( photoCount > 1 ) {
+                    // find smallest value
+                    var imageHeights = currentRow.find(settings.photo+' img').map(function() {
+                        thisPhoto     = $(this);
+                        naturalWidth  = thisPhoto.data('width');
+                        naturalHeight = thisPhoto.data('height');
+                        newWidth      = thisPhoto.parent().width();
+                        newHeight     = (newWidth/naturalWidth)*naturalHeight;
 
-                        // find smallest value
-                        var imageHeights = currentRow.find(settings.photo+' img').map(function() {
-                            thisPhoto     = $(this);
-                            naturalWidth  = thisPhoto.data('width');
-                            naturalHeight = thisPhoto.data('height');
-                            newWidth      = thisPhoto.parent().width();
-                            newHeight     = (newWidth/naturalWidth)*naturalHeight;
+                        thisPhoto.data('new-height',newHeight);
 
-                            thisPhoto.data('new-height',newHeight);
+                        return newHeight;
+                    }).get();
+                    var smallestHeight = Array.min(imageHeights);
+                    currentRow.height(smallestHeight - 1).find(settings.photo).height(smallestHeight - 1);
 
-                            return newHeight;
-                        }).get();
-                        var smallestHeight = Array.min(imageHeights);
-                        currentRow.height(smallestHeight - 1).find(settings.photo).height(smallestHeight - 1);
+                    // center crop the images that are too tall for the row
+                    for( i=0; i < images.length; i++ ) {
+                        var thisImage   = images.eq(i);
+                        var photoHeight = thisImage.data('new-height');
+                        var rowHeight   = smallestHeight;
 
-                        // center crop the images that are too tall for the row
-                        for( i=0; i < photoCount; i++ ) {
-                            var thisImage   = images.eq(i);
-                            var photoHeight = thisImage.data('new-height');
-                            var rowHeight   = smallestHeight;
-
-                            if( photoHeight > rowHeight ) {
-                                var heightDifference = (photoHeight-rowHeight)/2;
-                                thisImage.css('margin-top',-heightDifference);
-                            }
+                        if( photoHeight > rowHeight ) {
+                            var heightDifference = (photoHeight-rowHeight)/2;
+                            thisImage.css('margin-top',-heightDifference);
                         }
                     }
                 }
