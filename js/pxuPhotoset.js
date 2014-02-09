@@ -9,7 +9,16 @@
     + Licensed under the MIT license
 */
 
-(function( $ ){
+(function(factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory(require('jquery'));
+        require('../css/style.css');
+    } else {
+        factory(jQuery);
+    }
+})(function( $ ){
 
     $.fn.pxuPhotoset = function( options, callback ) {
 
@@ -390,5 +399,6 @@
         }); // end return each
 
     }; // end PXU Photoset Extended
+    return $;
 
-})( jQuery );
+});

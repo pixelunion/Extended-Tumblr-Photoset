@@ -10,6 +10,12 @@
   "author": "Pixel Union",
   "license": "MIT",
   "dependencies": {
-    "jquery": "~1.11.0"
+    "jquery": "~1.11.0",
+    "cssify": "~0.4.1"
+  },
+  "browserify": {
+    "transform": [
+      "cssify"
+    ]
   }
 }
