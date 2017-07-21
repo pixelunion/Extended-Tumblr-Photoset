@@ -93,11 +93,11 @@
 }
 
 .zoom {
-  background: url('http://static.tumblr.com/hugxd2w/kgem0so9j/zoom-icon.png');
+  background: url('//static.tumblr.com/hugxd2w/kgem0so9j/zoom-icon.png');
 }
 
 .info {
-  background: url('http://static.tumblr.com/hugxd2w/ffwm0so9t/info-icon.png');
+  background: url('//static.tumblr.com/hugxd2w/ffwm0so9t/info-icon.png');
   position: relative;
 }
 
@@ -138,7 +138,7 @@
 }
 
 .pxu-caption:before {
-  content: url('http://static.tumblr.com/hugxd2w/SSBm6wxmm/caption-icon.png');
+  content: url('//static.tumblr.com/hugxd2w/SSBm6wxmm/caption-icon.png');
   opacity: 0.5;
   filter: alpha(opacity = 50);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";

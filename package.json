@@ -1,0 +1,21 @@
+{
+  "name": "Extended-Tumblr-Photoset",
+  "version": "1.8.0",
+  "repository": "https://github.com/PixelUnion/Extended-Tumblr-Photoset",
+  "description": "Responsive, customisable photosets for your Tumblr theme",
+  "main": "js/pxuPhotoset.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pixel Union",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~1.11.0",
+    "cssify": "~0.4.1"
+  },
+  "browserify": {
+    "transform": [
+      "cssify"
+    ]
+  }
+}
